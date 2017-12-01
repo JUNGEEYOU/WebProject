@@ -2,8 +2,12 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+
+var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var flash    = require('connect-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,8 +20,13 @@ var contact = require('./routes/contact');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
 var serch = require('./routes/serch');
+var profile = require('./routes/profile');
+
 
 var app = express();
+
+require('./public/javascripts/passport')(passport); 
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,10 +36,27 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+/* set middlewares */
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(session({
+	secret: 'vidyapathaisalwaysrunning',
+	resave: true,
+	saveUninitialized: true
+ } )); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+
+
+
 
 app.use('/', index);
 app.use('/users', users);
@@ -44,6 +70,12 @@ app.use('/contact', contact);
 app.use('/signup', signup);
 app.use('/login', login);
 app.use('/serch', serch);
+app.use('/profile',profile);
+
+
+
+  
+
 
 
 // catch 404 and forward to error handler
