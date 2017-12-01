@@ -1,0 +1,107 @@
+body {
+    background-color: #ECF0F1;
+}
+
+#blog-section {
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+.content-title {
+    padding: 5px;
+    background-color: #fff;
+}
+
+.content-title h3 a {
+    color: #34495E;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.content-title h3 a:hover {
+    color: #F39C12;
+}
+
+.content-footer {
+    background-color: #16A085;
+    padding: 10px;
+    position: relative;
+}
+
+.content-footer span a {
+    color: #fff;
+    display: inline-block;
+    padding: 6px 5px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.content-footer span a:hover {
+    color: #F39C12;
+}
+
+aside {
+    margin-top: 30px;
+    -webkit-box-shadow: 1px 4px 16px 3px rgba(199, 197, 199, 1);
+    -moz-box-shadow: 1px 4px 16px 3px rgba(199, 197, 199, 1);
+    box-shadow: 1px 4px 16px 3px rgba(199, 197, 199, 1);
+}
+
+aside .content-footer>img {
+    width: 33px;
+    height: 33px;
+    border-radius: 100%;
+    margin-right: 10px;
+    border: 2px solid #fff;
+}
+
+.user-details {
+    width: 320px;
+    top: -100px;
+    height: 100px;
+    padding-bottom: 99px;
+    position: absolute;
+    border: solid 2px #fff;
+    background-color: #34495E;
+    right: 25px;
+    display: none;
+    z-index: 1;
+}
+
+@media (max-width:768px) {
+    .user-details {
+        right: 5px;
+    }
+}
+
+.user-small-img {
+    cursor: pointer;
+}
+
+.content-footer:hover .user-details {
+    display: block;
+}
+
+.content-footer .user-details .user-img {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.user-full-details h3 {
+    color: #fff;
+    display: block;
+    margin: 10px;
+    padding-top: 10px;
+    padding-left: 100px;
+    text-align: left;
+}
+
+.user-full-details p {
+    color: #fff;
+    display: block;
+    margin: 10px;
+    padding-left: 100px;
+    padding-top: 5px;
+    text-align: left;
+}
