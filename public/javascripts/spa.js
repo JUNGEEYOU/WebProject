@@ -10,6 +10,11 @@
                     templateUrl : 'main'
                 })
     
+
+                .when('/main', {
+                    templateUrl : 'main'
+                })
+    
                //aboutKorea
                .when('/aboutKorea', {
                 templateUrl : 'aboutKorea'
@@ -57,8 +62,13 @@
                    .when('/serch', {
                     templateUrl : 'serch'
 
-                    
-                });
+                })
+
+                //   //gallery 
+                //   .when('/gallery/add', {
+                //     templateUrl : 'gallery/add'
+
+                // });
 
                 $locationProvider.html5Mode(true);
 

@@ -8,6 +8,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash    = require('connect-flash');
+var mysql = require('mysql');
+var connection  = require('express-myconnection'); 
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -37,6 +40,22 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+app.use(
+  
+  connection(mysql,{
+      
+      host: 'localhost', //'localhost',
+      user: 'root',
+      password : 'jungee135',
+      port : 3306, //port mysql
+      database:'nodejs'
+
+  },'pool') //or single
+
+);
 
 
 
