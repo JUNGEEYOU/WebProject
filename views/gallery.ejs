@@ -1,17 +1,28 @@
 
-  <!-- <link rel="stylesheet" href="stylesheets/gallery.css">
-  <script src="javascripts/populateThumbnails.js"></script>
+  <link rel="stylesheet" href="stylesheets/gallery.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="javascripts/board.js"></script>
 
   <div class="container">
-        <div class="row" id="thumbsContainer">
+        <div class="data-btn">
+             <button onClick="addUser();">+ Add</button>
+        </div>
 
 
-            <div class="col-lg-4 col-md-6" id="thumb">
-                <aside>
+    
+        <div class="row" id="thumbsContainer"></div>
+            <div class="col-md-4" id="thumb">
+                    <% if(data.length){ 
+                        
+            for(var i = 0;i < data.length;i++) { %>
+                <aside  class="col-xs-6 col-md-4">
                     <img src="images/img1.jpeg" class="img-responsive" id="thumbImage">
                     <div class="content-title">
                         <div class="text-center">
-                            <h3><a href="#" id="thumbTitle">The tile of the blog thumbnail goes here</a></h3>
+                            <h3><a href="#" id="thumbTitle"><%=data[i].name%></a></h3>
+                            <h3><%=data[i].address%></h3>
+                            <h3><%=data[i].phone%></h3>
+                            <h3><%=data[i].email%></h3>
                         </div>
                     </div>
                     <div class="content-footer">
@@ -30,15 +41,25 @@
                         </div>
                     </div>
                 </aside>
+                <% }
+                
+                 }else{ %>
+                    <p>no user</p>
+                    <% } %>
             </div>
-
         </div>
-    </div> -->
+       
+    </div>
+
+
+
+
+
+
+
 
     
-    <script src="javascripts/board.js"></script>
-
-    <div class="page-data">
+    <!-- <div class="page-data">
         <div class="data-btn">
           <button onClick="addUser();">+ Add</button>
         </div>
@@ -82,4 +103,4 @@
                
            </table>
         </div>
-       </div>
+       </div> -->
