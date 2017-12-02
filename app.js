@@ -55,9 +55,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 
-
-
-
 app.use('/', index);
 app.use('/users', users);
 app.use('/main', main);
