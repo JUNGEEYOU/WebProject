@@ -1,8 +1,8 @@
 
-	var scotchApp = angular.module('scotchApp', ['ngRoute']);
+	var scotchApp = angular.module('scotchy', ['ngRoute']);
     
   
-        scotchApp.config(function($routeProvider) {
+        scotchApp.config(function($routeProvider,$locationProvider) {
             $routeProvider
     
                //home
@@ -48,12 +48,19 @@
                     templateUrl : 'login'
                 })
 
+                  //profile
+                  .when('/profile', {
+                    templateUrl : 'profile'
+                })
+
                    //serch
                    .when('/serch', {
                     templateUrl : 'serch'
+
+                    
                 });
 
-                  
+                $locationProvider.html5Mode(true);
 
 
         });
