@@ -7,7 +7,15 @@
         <div class="data-btn">
              <button onClick="addUser();">+ Add</button>
         </div>
-
+        <form action="/gallery/search" method="get">
+            <div class="box">
+                    <div class="container-1">
+                        <span class="icon"><i class="fa fa-search"></i></span>
+                        <input type="search" id="search" name ="search" placeholder="search" />
+                    </div>
+                  </div> 
+                        &nbsp; <input type="submit" name="submit" value="Save">
+        </form>
 
     
         <div class="row" id="thumbsContainer"></div>
@@ -26,10 +34,16 @@
                     <div class="content-footer">
                         <img class="user-small-img" src="images/profile.jpg" id="authorPic">
                         <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].username%></span>
+
+
+                        <% 
+                        if (data[i].users_id == user.id){%>
                         <span class="pull-right">
-                            <a href="#" data-toggle="tooltip" data-placement="left" title="Comments"><i class="fa fa-comments" ></i> <span id="commentsNumber"> 30 </span></a>
-                        <a href="#" data-toggle="tooltip" data-placement="right" title="like"><i class="fa fa-thumbs-o-up "></i> <span id="likesNumber"> 20 </span></a>
+                                <a class="a-inside edit" href="../gallery/edit/<%=data[i].gallery_id%>">Edit</a>
+                                 <a class="a-inside delete" href="../gallery/delete/<%=data[i].gallery_id%>">Delete</a>
                         </span>
+                         <% }%>
+
                         <div class="user-details">
                             <div class="user-img"><img src="images/profile.jpg" class="img-responsive" id="authorPic"></div>
                             <span class="user-full-details">

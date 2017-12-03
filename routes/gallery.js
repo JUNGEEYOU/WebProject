@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 var router = express.Router();
 var fs = require('fs'); 
@@ -39,11 +37,15 @@ router.get('/', function(req, res, next) {
     
      var query = connection.query('select * from users inner join gallery on users.id= gallery.users_id',function(err,rows)
      {
-         console.log("join: ",rows );
+        //console.log("user", req.user );
+        // console.log("join: ",rows );
          if(err)
              console.log("Error Selecting : %s ",err );
   
-         res.render('gallery',{data:rows});
+             if(req.user == undefined){
+                 req.user = {id : 0};
+             }
+         res.render('gallery',{data:rows, user:req.user});
              
         
       });
@@ -51,6 +53,31 @@ router.get('/', function(req, res, next) {
       //console.log(query.sql);
  });
 });
+
+
+router.get('/search', function(req, res, next) {
+        var search = req.query.search ;
+        console.log("req: ",search );
+       // SELECT * FROM gallery WHERE name LIKE "%ff%" or  info LIKE "%yo%";
+        // req.getConnection(function (err, connection) {
+            
+        //     connection.query("SELECT * FROM gallery WHERE name LIKE '%?%' or  info LIKE '%?%' ",[search,search], function(err, rows)
+        //     {
+                
+        //          if(err)
+        //              console.log("Error deleting : %s ",err );
+                
+        //         console.log("this: ", rows);
+                
+                 
+        //     });
+            
+        //  });
+         res.redirect('search');
+
+  });
+
+
 
 router.get('/add', function(req, res, next) {
     res.render('galleryadd');
@@ -61,7 +88,7 @@ router.get('/add', function(req, res, next) {
 
   //갤러리 업로드 
   router.post('/add',upload.any(), function(req, res, next) {
-
+  
     var file = req.files;
     // console.log(file[0].path);
     // console.log(req.RowDataPacket);
@@ -94,9 +121,10 @@ router.get('/add', function(req, res, next) {
 
 
 
-  router.get('/delete/:id',function(req, res, next){
+  router.get('/delete/:gallery_id',function(req, res, next){
     var gallery_id = req.params.gallery_id;
     
+
      req.getConnection(function (err, connection) {
         
         connection.query("DELETE FROM gallery  WHERE gallery_id = ? ",[gallery_id], function(err, rows)
