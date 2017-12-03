@@ -16,7 +16,7 @@
                         
             for(var i = 0;i < data.length;i++) { %>
                 <aside  class="col-xs-6 col-md-4">
-                    <img src="images/img1.jpeg" class="img-responsive" id="thumbImage">
+                    <img src="<%=data[i].url%>" class="img-responsive" >
                     <div class="content-title">
                         <div class="text-center">
                             <h3><a href="#" id="thumbTitle"><%=data[i].name%></a></h3>

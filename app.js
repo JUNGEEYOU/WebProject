@@ -36,11 +36,11 @@ app.set('views', path.join(__dirname, 'views'));
 // 이거 설절이 필요함!!
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'foodimg')));
 
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(

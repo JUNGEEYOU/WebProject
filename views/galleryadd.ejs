@@ -3,16 +3,22 @@
 <script src="/javascripts/board.js"></script>
         <div class="page-data">
             
-            <form method="post" action="/gallery/add">
+            <form method="post" action="/gallery/add" enctype="multipart/form-data" >
+                <h2>Select an image to upload:</h2>
+                <br/>
+                <input type="file" name="fileName">
+                <br/>
+                <br/>
+            
                 <table cellpadding="11">
                 <tr>
-                    <td class="label">Name</td><td>: <input type="text" name="name" required></td>
+                    <td class="label">제목</td><td>: <input type="text" name="name" required></td>
                  </tr>
                  <tr>
-                    <td class="label" valign="top">Address</td><td valign="top">: <textarea name="address" required cols="30" rows="5"></textarea></td>
+                    <td class="label" valign="top">내용</td><td valign="top">: <textarea name="address" required cols="30" rows="5"></textarea></td>
                 </tr>
                 <tr>
-                    <td class="label">Email</td><td>: <input type="text" name="email" required></td>
+                    <td class="label">email</td><td>: <input type="text" name="email" required></td>
                  </tr>
                   <tr>
                     <td class="label">Phone</td><td>: <input type="text" name="phone" required></td>
@@ -25,6 +31,7 @@
                     </td>
                  </tr>
                 </table>
+                <h1 id='uploadProgress'></h1>
             </form>
             
         </div>
