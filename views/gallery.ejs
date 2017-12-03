@@ -25,7 +25,7 @@
                     </div>
                     <div class="content-footer">
                         <img class="user-small-img" src="images/profile.jpg" id="authorPic">
-                        <span style="font-size: 16px;color: #fff;" id="authorName1">Student Name</span>
+                        <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].username%></span>
                         <span class="pull-right">
                             <a href="#" data-toggle="tooltip" data-placement="left" title="Comments"><i class="fa fa-comments" ></i> <span id="commentsNumber"> 30 </span></a>
                         <a href="#" data-toggle="tooltip" data-placement="right" title="like"><i class="fa fa-thumbs-o-up "></i> <span id="likesNumber"> 20 </span></a>
@@ -33,7 +33,7 @@
                         <div class="user-details">
                             <div class="user-img"><img src="images/profile.jpg" class="img-responsive" id="authorPic"></div>
                             <span class="user-full-details">
-                                <h3 id="authorName2">Student Name</h3>
+                                <h3 id="authorName2"><%=data[i].username%></h3>
                                 <p id="authorJob">A student from Coventry University</p>
                             </span>
                         </div>
@@ -42,7 +42,7 @@
                 <% }
                 
                  }else{ %>
-                    <p>no user</p>
+                    <p>no info</p>
                     <% } %>
             </div>
         </div>

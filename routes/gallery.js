@@ -1,4 +1,5 @@
 
+
 var express = require('express');
 var router = express.Router();
 var fs = require('fs'); 
@@ -36,9 +37,9 @@ router.get('/', function(req, res, next) {
 
   req.getConnection(function(err,connection){
     
-     var query = connection.query('SELECT * FROM customer',function(err,rows)
+     var query = connection.query('select * from users inner join gallery on users.id= gallery.users_id',function(err,rows)
      {
-         
+         console.log("join: ",rows );
          if(err)
              console.log("Error Selecting : %s ",err );
   
@@ -62,7 +63,9 @@ router.get('/add', function(req, res, next) {
   router.post('/add',upload.any(), function(req, res, next) {
 
     var file = req.files;
-    console.log(file[0].path);
+    // console.log(file[0].path);
+    // console.log(req.RowDataPacket);
+    // console.log("user: "+req.user);
     var input = JSON.parse(JSON.stringify(req.body));
     
     req.getConnection(function (err, connection) {
@@ -70,10 +73,11 @@ router.get('/add', function(req, res, next) {
         var data = {
             name    : input.name,
             info : input.info,
-            url : file[0].path
+            url : file[0].path,
+            users_id : req.user.id
         };
         
-        var query = connection.query("INSERT INTO customer set ? ",data, function(err, rows)
+        var query = connection.query("INSERT INTO gallery set ? ",data, function(err, rows)
         {
   
           if (err)
@@ -91,11 +95,11 @@ router.get('/add', function(req, res, next) {
 
 
   router.get('/delete/:id',function(req, res, next){
-    var id = req.params.id;
+    var gallery_id = req.params.gallery_id;
     
      req.getConnection(function (err, connection) {
         
-        connection.query("DELETE FROM customer  WHERE id = ? ",[id], function(err, rows)
+        connection.query("DELETE FROM gallery  WHERE gallery_id = ? ",[gallery_id], function(err, rows)
         {
             
              if(err)
@@ -109,12 +113,12 @@ router.get('/add', function(req, res, next) {
   });
 
 
-  router.get('/edit/:id', function(req, res, next) {
-    var id = req.params.id;
+  router.get('/edit/:gallery_id', function(req, res, next) {
+    var gallery_id = req.params.gallery_id;
     
     req.getConnection(function(err,connection){
        
-        var query = connection.query('SELECT * FROM customer WHERE id = ?',[id],function(err,rows)
+        var query = connection.query('SELECT * FROM gallery WHERE gallery_id = ?',[gallery_id],function(err,rows)
         {
             
             if(err)
@@ -129,9 +133,9 @@ router.get('/add', function(req, res, next) {
     }); 
     });
 
-  router.post('/edit/:id', function(req, res, next) {
+  router.post('/edit/:gallery_id', function(req, res, next) {
    var input = JSON.parse(JSON.stringify(req.body));
-    var id = req.params.id;
+    var gallery_id = req.params.gallery_id;
     
     req.getConnection(function (err, connection) {
         
@@ -142,7 +146,7 @@ router.get('/add', function(req, res, next) {
         
         };
         
-        connection.query("UPDATE customer set ? WHERE id = ? ",[data,id], function(err, rows)
+        connection.query("UPDATE gallery set ? WHERE gallery_id = ? ",[data,gallery_id], function(err, rows)
         {
   
           if (err)
