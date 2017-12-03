@@ -68,13 +68,9 @@ router.get('/add', function(req, res, next) {
     req.getConnection(function (err, connection) {
         
         var data = {
-            
             name    : input.name,
-            address : input.address,
-            email   : input.email,
-            phone   : input.phone,
+            info : input.info,
             url : file[0].path
-        
         };
         
         var query = connection.query("INSERT INTO customer set ? ",data, function(err, rows)
@@ -88,8 +84,6 @@ router.get('/add', function(req, res, next) {
         });
         
     });
-
-    //res.render('galleryadd');
   });
 
 
@@ -143,10 +137,8 @@ router.get('/add', function(req, res, next) {
         
         var data = {
             
-            name    : input.name,
-            address : input.address,
-            email   : input.email,
-            phone   : input.phone 
+            name  : input.name,
+            info : input.info,
         
         };
         

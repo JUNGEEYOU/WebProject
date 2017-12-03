@@ -57,7 +57,7 @@ app.use(
 
 );
 
-
+app.use(express.static('./')); 
 
 /* set middlewares */
 app.use(cookieParser());
