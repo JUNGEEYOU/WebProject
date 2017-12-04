@@ -11,8 +11,6 @@ var bodyParser = require("body-parser");
 
 
 
-
-
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
       callback(null, 'foodimg/');
@@ -56,24 +54,24 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/search', function(req, res, next) {
-        var search = req.query.search ;
-        console.log("req: ",search );
-       // SELECT * FROM gallery WHERE name LIKE "%ff%" or  info LIKE "%yo%";
-        // req.getConnection(function (err, connection) {
-            
-        //     connection.query("SELECT * FROM gallery WHERE name LIKE '%?%' or  info LIKE '%?%' ",[search,search], function(err, rows)
-        //     {
+    console.log("search : ", req. query.search);
+    var search = req. query.search;
+
+        req.getConnection(function (err, connection) {
+      
+            connection.query("SELECT * FROM gallery WHERE name LIKE ? or info LIKE ? ",['%'+search+'%', '%'+search+'%'], function(err, rows)
+            {
+                 if(err)
+                     console.log("Error deleting : %s ",err );
                 
-        //          if(err)
-        //              console.log("Error deleting : %s ",err );
-                
-        //         console.log("this: ", rows);
+                console.log("this: ", rows);
                 
                  
-        //     });
+            });
             
-        //  });
-         res.redirect('search');
+         });
+
+          res.render('search', {data:rows});
 
   });
 
@@ -121,7 +119,7 @@ router.get('/add', function(req, res, next) {
 
 
 
-  router.get('/delete/:gallery_id',function(req, res, next){
+  router.delete('/delete/:gallery_id',function(req, res, next){
     var gallery_id = req.params.gallery_id;
     
 
@@ -189,19 +187,6 @@ router.get('/add', function(req, res, next) {
 
 
  
-
-
- 
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
