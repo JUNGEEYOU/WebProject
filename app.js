@@ -51,7 +51,8 @@ app.use(
       user: 'root',
       password : 'jungee135',
       port : 3306, //port mysql
-      database:'my_schema'
+      database:'my_schema',
+      multipleStatements: true
 
   },'pool') //or single
 

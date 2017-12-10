@@ -32,14 +32,16 @@ var storage = multer.diskStorage({
 router.get('/', function(req, res, next) {
 
   req.getConnection(function(err,connection){
-    
-     var query = connection.query('select * from users inner join gallery on users.id= gallery.users_id',function(err,rows)
+    //select * from users inner join gallery on users.id= gallery.users_idinner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id
+     var query = connection.query('select * from users inner join gallery on users.id= gallery.users_id;'+'select *  from gallery inner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id ;' ,function(err,rows)
      {
-        //console.log("user", req.user );
+        console.log("user", req.user );
         // console.log("join: ",rows );
          if(err)
              console.log("Error Selecting : %s ",err );
   
+
+
              if(req.user == undefined){
                  req.user = {id : 0};
              }
@@ -74,6 +76,40 @@ router.get('/search', function(req, res, next) {
   });
 
 
+//작업 
+router.post('/comment/:gallery_id', function(req, res, next) {
+    
+  //  var username = req.params.username;
+    
+      var input = JSON.parse(JSON.stringify(req.body));
+      
+      console.log("parms id: ", req.params.gallery_id);
+      req.getConnection(function (err, connection) {
+          
+          var data = {
+              comment    : input.comment,
+              gallery_id : req.params.gallery_id,
+              user_name : req.user.username
+          };
+          
+          var query = connection.query("INSERT INTO gallery_comment set ? ",data, function(err, rows)
+          {
+    
+            if (err)
+                console.log("Error inserting : %s ",err );
+           
+            res.redirect('/gallery');
+            
+          });
+          
+      });
+    });
+
+
+
+
+
+
 
 router.get('/add', function(req, res, next) {
     res.render('galleryadd');
@@ -86,9 +122,7 @@ router.get('/add', function(req, res, next) {
   router.post('/add',upload.any(), function(req, res, next) {
   
     var file = req.files;
-    // console.log(file[0].path);
-    // console.log(req.RowDataPacket);
-    // console.log("user: "+req.user);
+
     var input = JSON.parse(JSON.stringify(req.body));
     
     req.getConnection(function (err, connection) {
