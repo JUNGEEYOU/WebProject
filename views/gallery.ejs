@@ -1,6 +1,7 @@
 
   <link rel="stylesheet" href="stylesheets/gallery.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   <script src="javascripts/board.js"></script>
 
   <div class="container">
@@ -14,7 +15,7 @@
                         <input type="search" id="search" name ="search" placeholder="search" />
                     </div>
                   </div> 
-                       <button>전송</button>
+                       <button>검색</button>
         </form>
 
 
@@ -35,6 +36,8 @@
                         <img class="user-small-img" src="images/profile.jpg" id="authorPic">
                         <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].username%></span>
 
+                    
+                        <button><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true"></span>Comment</button>
 
                         <% 
                         if (data[i].users_id == user.id){%>

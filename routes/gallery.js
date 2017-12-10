@@ -65,14 +65,12 @@ router.get('/search', function(req, res, next) {
                      console.log("Error deleting : %s ",err );
                 
                 console.log("this: ", rows);
-                
-                 
+
+
+                res.render('search',{data: rows, search: search} );
             });
-            
          });
-
-          res.render('search', {data:rows});
-
+          
   });
 
 
