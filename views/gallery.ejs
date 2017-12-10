@@ -1,8 +1,35 @@
 <link rel="stylesheet" href="stylesheets/gallery.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
 <script src="javascripts/board.js"></script>
+<script src="javascripts/spa.js"></script>
+
+
+<script type="text/javascript">
+
+
+
+function myFunction(name, info, img, gallery_id) {
+    
+        var commnetdata ="<tr><th>User name</th><th>comment</th></tr>";
+    
+        document.getElementById("myModalLabel").innerHTML =  name;
+        document.getElementById("info").innerHTML =  info;
+        document.getElementById("gallery_img").src =img;
+    
+        console.log("idid",gallery_id);
+    }
+</script>
+
+
+
+
 <div class="container">
 	<div class="data-btn">
 		<button onclick="addUser();">+ Add</button>
@@ -30,8 +57,8 @@
 		</div>
 		<div class="content-footer">
 			<img class="user-small-img" src="images/profile.jpg" id="authorPic">
-			<span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[0][i].username%></span>
-            <button type="button" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true"></span>Comment</button>
+            <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[0][i].username%></span>
+            <button type="button" data-toggle="modal" data-target="#myModal" onclick="myFunction('<%=data[0][i].name%>', '<%=data[0][i].info%>','<%=data[0][i].url%>', '<%=data[0][i].gallery_id%>' )"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true" ></span>Comment</button>
             
 
 			<!-- Modal -->
@@ -40,32 +67,24 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel"><%=data[0][i].name%></h4>
+							<h4 class="modal-title" id="myModalLabel">New message</h4>
 						</div>
 						<div class="modal-body">
-								<img src="<%=data[0][i].url%>" class="img-responsive" >
+								<img class="img-responsive" id ="gallery_img" >
                                 <div class="content-title">
                                     <div class="text-center">
-                                        <h3><%=data[0][i].info%></h3>
+                                        <h3 id ="info"></h3>
                                     </div>
                                 </div>
                         <!-- 댓글 -->
                         <div class="panel panel-default">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Comment</div>
-                                <table class="table">
-                                        <tr>
-                                                <th>User name</th>
-                                                <th>comment</th>
-                                              </tr>
-                                              <% if(data[1].length){ for(var j=0;j< data[1].length;j++) { %> 
-                                              <tr>
-                                                <td><%=data[1][j].user_name%></td>
-                                                <td><%=data[1][j].comment%></td>
-                                              </tr>
-                                              <% }%>
-                                              <% }%>
+                                <table class="table" id="comment_data" >
+                                        
+                                        <tr><th>User name</th><th>comment</th></tr>
                                     
+
                                 </table>
                       
                               </div>
@@ -74,7 +93,7 @@
                                 <div class="box">
                                     <div class="container-1">
                                         <span class="icon"><i class="fa fa-search"></i></span>
-                                        <input type="comment" id="comment" name="comment" placeholder="comment"/>
+                                        <input type="comment" name="comment" placeholder="comment" id="comment" class="input" value=""/>
                                     </div>
                                 </div>
                                 <button>submit</button>
@@ -119,39 +138,5 @@
 	</div>
 </div>
 </div>
-<!-- <div class="page-data">
-        <div class="data-btn">
-          <button onClick="addUser();">+ Add</button>
-        </div>
-        <div class="data-table">
-           <table border="1" cellpadding="7" cellspacing="7">
-               <tr>
-                   <th width="50px">No</th>
-                   <th>Name</th>
-                   <th>Address</th>
-                   <th>Phone</th>
-                   <th>Email</th>
-                   <th width="120px">Action</th>
-               </tr>
-               <% if(data.length){ 
-                for(var i = 0;i < data.length;i++) { %>
-               <tr>
-                   <td><%=(i+1)%></td>
-                   <td><%=data[i].name%></td>
-                   <td><%=data[i].address%></td>
-                   <td><%=data[i].phone%></td>
-                   <td><%=data[i].email%></td>
-                   <td>
-                       <a class="a-inside edit" href="../gallery/edit/<%=data[i].id%>">Edit</a>
-                       <a class="a-inside delete" href="../gallery/delete/<%=data[i].id%>">Delete</a>
-                   </td>
-               </tr>
-           <% }
-            }else{ %>
-                <tr>
-                   <td colspan="3">No user</td>
-                </tr>
-           <% } %>
-           </table>
-        </div>
-       </div> -->
+
+
