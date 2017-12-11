@@ -41,6 +41,7 @@ body {
 }
 
 aside {
+    /* margin-left: 20px; */
     margin-top: 30px;
     -webkit-box-shadow: 1px 4px 16px 3px rgba(199, 197, 199, 1);
     -moz-box-shadow: 1px 4px 16px 3px rgba(199, 197, 199, 1);

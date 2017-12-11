@@ -38,17 +38,23 @@ router.get('/', function(req, res, next) {
         // console.log("join: ",rows );
          if(err)
              console.log("Error Selecting : %s ",err );
-  
-
-
              //console.log("ataaa", rows);
-
              if(req.user == undefined){
                  req.user = {id : 0};
              }
+        // console.log(rows);
+        // var gallaryInfo =  new Array();
+        // for(var i=0; i<rows.length; i++) {
+        //     console.log("ROWS: " + i + "st");
+        //     gallaryInfo.push( {
+
+        //     }
+
+        //     )
+        //     console.log(rows[0][i]);
+        //     gallaryInfo.push(rows[i]);
+        // }
          res.render('gallery',{data:rows, user:req.user, id: 0,comments: rows[1]});
-             
-        
       });
       
       //console.log(query.sql);
@@ -74,7 +80,6 @@ router.get('/', function(req, res, next) {
     
 //              res.render('gallery',{comments:rows});
                  
-            
 //           });
           
 //           //console.log(query.sql);

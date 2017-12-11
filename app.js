@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'foodimg')));
 
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.locals.fucking = 1;
 
 app.use(
   

@@ -12,14 +12,14 @@
     text-rendering: optimizeLegibility;
 }
 
-body {
+/* body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-size: 12px;
     line-height: 30px;
     color: #777;
     background-color: #ECF0F1;
-}
+} */
 
 .container {
     max-width: 400px;

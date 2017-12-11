@@ -11,33 +11,19 @@
 <script src="javascripts/spa.js"></script>
 
 <script type="text/javascript">
-var id = 0; 
-
+var id = 10;
 function myFunction(bbb, name, info, img, gallery_id,test) {
-
-    id = gallery_id;
+    console.log("Button Call!");
     var srt; 
     document.getElementById("myModalLabel").innerHTML =  name;
     document.getElementById("info").innerHTML =  info;
     document.getElementById("gallery_img").src =img;
-    document.getElementById("test").innerHTML = id;
-   
-     console.log("dddd", test);
-    // for(var j=0; j < data[1].lenght ; j++){
-    //     if(gallery_id ==data[1][j].gallery_id ){
-    //         console.log("id test", data[1][j].comment);
-    //     }
-    // }
-    
-
-    console.log("idid",bbb);
-
-
+    document.getElementById("test").innerHTML = gallery_id;
+    window.fucking = 100;
+    console.log(fucking);
+    console.log("idid",gallery_id);
 }
 </script>
-
-
-
 
 <div class="container">
 	<div class="data-btn">
@@ -47,39 +33,34 @@ function myFunction(bbb, name, info, img, gallery_id,test) {
 		<div class="box">
 			<div class="container-1">
 				<span class="icon"><i class="fa fa-search"></i></span>
-				<input type="search" id="search" name="search" placeholder="search"/>
+				<input class = "form-control" type="search" id="search" name="search" placeholder="search"/>
 			</div>
 		</div>
 		<button>검색</button>
 	</form>
-	<div class="row" id="thumbsContainer">
-	</div>
-	<div class="col-md-4" id="thumb">
+	
+	<div class="row center-block" id="thumb">
           
 
 
         <% if(data[0].length){ for(var i=0;i < data[0].length;i++) { %>
             
-		<aside class="col-xs-6 col-md-4">
+		<aside class="col-xs-6 col-md-4 center-block" >
 		<img src="<%=data[0][i].url%>" class="img-responsive" >
 		<div class="content-title">
 			<div class="text-center">
 				<h3><a href="#" id="thumbTitle"><%=data[0][i].name%></a></h3>
-				<h3><%=data[0][i].info%></h3>
+                <h3><%=data[0][i].info%></h3>
+              
 			</div>
 		</div>
 		<div class="content-footer">
 			<img class="user-small-img" src="images/profile.jpg" id="authorPic">
             <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[0][i].username%></span>
         
-            <button  type="button" data-toggle="modal" data-target="#myModal" onclick="myFunction(this, '<%=data[0][i].name%>', '<%=data[0][i].info%>','<%=data[0][i].url%>', '<%=data[0][i].gallery_id%>')"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true" ></span>Comment</button>
+            <button type="button" data-toggle="modal" data-target="#myModal" onclick="myFunction(this, '<%=data[0][i].name%>', '<%=data[0][i].info%>','<%=data[0][i].url%>', '<%= data[1]%>')"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true" ></span>Comment</button>
             
-
-			
-          
-
-            
-			<% if (data[i].users_id==user.id){%>
+			<% if (data[0][i].users_id==user.id){%>
 			<span class="pull-right">
 			<a class="a-inside edit" href="../gallery/edit/<%=data[0][i].gallery_id%>">Edit</a>
 			<a class="a-inside delete" href="../gallery/delete/<%=data[0][i].gallery_id%>">Delete</a>
@@ -90,7 +71,7 @@ function myFunction(bbb, name, info, img, gallery_id,test) {
 					<img src="images/profile.jpg" class="img-responsive" id="authorPic">
 				</div>
 				<span class="user-full-details">
-				<h3 id="authorName2"><%=data[i].username%></h3>
+				<h3 id="authorName2"><%=data[0][i].username%></h3>
 				<p id="authorJob">
 					A student from Coventry University
 				</p>
@@ -126,24 +107,24 @@ function myFunction(bbb, name, info, img, gallery_id,test) {
                                     <!-- Default panel contents -->
                                     <div class="panel-heading">Comment</div>
                                     <table class="table" id="comment_data" >
-                                            
+                                        <script>
+                                            var a = window.fucking;
+                                            console.log("FUCK!" + a);
+                                            </script>
                                             <tr><th >User name</th><th>comment</th></tr>
                                             <% 
                                             for(var k=0;k < data[1].length;k++){
-                                                console.log("test", id);
-                                                if(data[1][k].gallery_id ==id){%>
-                                               
+                                                console.log("Length" + data[1].length);
+                                                console.log("TEST", id);
+                                                console.log("ID CHECK" + data[1][k].gallery_id);%>
+                                                if(data[1][k].gallery_id == id)
                                                 <tr>
                                                     <td><%=data[1][k].user_name%> </td>
                                                     <td><%=data[1][k].comment%> </td>
                                                 </tr>
-    
-                                            <%}}%>
-        
+                                            <%}%>
                                     </table>
-                          
                                   </div>
-    
                                   <form action="/gallery/comment/<%=id%>" method="post">
                                     <div class="box">
                                         <div class="container-1">

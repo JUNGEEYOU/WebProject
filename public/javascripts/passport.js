@@ -21,8 +21,15 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
+        // console.log("ID CHECK: " + id);
         connection.query("SELECT * FROM users WHERE id = ? ",[id], function(err, rows){
-            done(err, rows[0]);
+            if(err) {
+                console.log(err.message);
+            } else {
+                var user = rows[0];
+                console.log("USER RESULT!: " + user);
+                done(err, user);
+            }
         });
     });
 
@@ -32,13 +39,11 @@ module.exports = function(passport) {
     passport.use(
         'local-signup',
         new LocalStrategy({
-    
             usernameField : 'username',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) {
-   
             connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
                 if (err)
                     return done(err);
@@ -53,13 +58,20 @@ module.exports = function(passport) {
                         email : req.body.email
                     };
 
-                    var insertQuery = "INSERT INTO users ( username, password, email ) values (?,?,?)";
+                    var insertQuery = "INSERT INTO users (username, password, email ) values (?,?,?)";
 
                     connection.query(insertQuery,[newUserMysql.username, newUserMysql.password,  newUserMysql.email],function(err, rows) {
-                        console.log("id: "+ rows);
-                        newUserMysql.id = rows.id;
-
-                        return done(null, newUserMysql);
+                        if(err) {
+                            console.log(err.message);
+                        } else {
+                            // console.log("rows1 "+ rows);
+                            // console.log("rows2 "+ rows.id);
+                            // console.log("rows3 "+ rows._id);
+                            // console.log("rows4 "+ username._id);
+                            console.log(JSON.stringify(rows));
+                            newUserMysql.id = rows.insertId;
+                            return done(null, newUserMysql);
+                        }
                     });
                 }
             });
