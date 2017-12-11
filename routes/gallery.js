@@ -10,7 +10,6 @@ var bodyParser = require("body-parser");
 
 
 
-
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
       callback(null, 'foodimg/');
@@ -42,10 +41,12 @@ router.get('/', function(req, res, next) {
   
 
 
+             //console.log("ataaa", rows);
+
              if(req.user == undefined){
                  req.user = {id : 0};
              }
-         res.render('gallery',{data:rows, user:req.user});
+         res.render('gallery',{data:rows, user:req.user, id: 0,comments: rows[1]});
              
         
       });
@@ -53,6 +54,38 @@ router.get('/', function(req, res, next) {
       //console.log(query.sql);
  });
 });
+
+
+//작업 
+
+// router.get('/:gallery_id', function(req, res, next) {
+    
+//       var gallery_id = req.params.gallery_id;
+
+//       req.getConnection(function(err,connection){
+//         //select * from users inner join gallery on users.id= gallery.users_idinner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id
+//          var query = connection.query('select * from gallery inner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id where gallery_comment.gallery_id =  ?',[gallery_id] ,function(err,rows)
+//          {
+           
+//              console.log("id------: ",rows );
+//              if(err)
+//                  console.log("Error Selecting : %s ",err );
+      
+    
+//              res.render('gallery',{comments:rows});
+                 
+            
+//           });
+          
+//           //console.log(query.sql);
+//      });
+//     });
+
+
+
+
+
+
 
 
 router.get('/search', function(req, res, next) {
@@ -76,7 +109,10 @@ router.get('/search', function(req, res, next) {
   });
 
 
-//작업 
+
+
+
+
 router.post('/comment/:gallery_id', function(req, res, next) {
     
   //  var username = req.params.username;

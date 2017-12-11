@@ -11,9 +11,9 @@
                 })
     
 
-                .when('/main', {
-                    templateUrl : 'main'
-                })
+                // .when('/main', {
+                //     templateUrl : 'main'
+                // })
     
                //aboutKorea
                .when('/aboutKorea', {
@@ -64,13 +64,15 @@
 
                 })
 
-                //   //gallery 
-                //   .when('/gallery/add', {
-                //     templateUrl : 'gallery/add'
+                .otherwise({
+                    redirectTo: '/'
+                  });
 
-                // });
+           
 
                 $locationProvider.html5Mode(true);
 
 
         });
+
+

@@ -10,21 +10,30 @@
 <script src="javascripts/board.js"></script>
 <script src="javascripts/spa.js"></script>
 
-
 <script type="text/javascript">
+var id = 0; 
+
+function myFunction(bbb, name, info, img, gallery_id,test) {
+
+    id = gallery_id;
+    var srt; 
+    document.getElementById("myModalLabel").innerHTML =  name;
+    document.getElementById("info").innerHTML =  info;
+    document.getElementById("gallery_img").src =img;
+    document.getElementById("test").innerHTML = id;
+   
+     console.log("dddd", test);
+    // for(var j=0; j < data[1].lenght ; j++){
+    //     if(gallery_id ==data[1][j].gallery_id ){
+    //         console.log("id test", data[1][j].comment);
+    //     }
+    // }
+    
+
+    console.log("idid",bbb);
 
 
-
-function myFunction(name, info, img, gallery_id) {
-    
-        var commnetdata ="<tr><th>User name</th><th>comment</th></tr>";
-    
-        document.getElementById("myModalLabel").innerHTML =  name;
-        document.getElementById("info").innerHTML =  info;
-        document.getElementById("gallery_img").src =img;
-    
-        console.log("idid",gallery_id);
-    }
+}
 </script>
 
 
@@ -46,7 +55,11 @@ function myFunction(name, info, img, gallery_id) {
 	<div class="row" id="thumbsContainer">
 	</div>
 	<div class="col-md-4" id="thumb">
-		<% if(data[0].length){ for(var i=0;i < data[0].length;i++) { %>
+          
+
+
+        <% if(data[0].length){ for(var i=0;i < data[0].length;i++) { %>
+            
 		<aside class="col-xs-6 col-md-4">
 		<img src="<%=data[0][i].url%>" class="img-responsive" >
 		<div class="content-title">
@@ -58,57 +71,12 @@ function myFunction(name, info, img, gallery_id) {
 		<div class="content-footer">
 			<img class="user-small-img" src="images/profile.jpg" id="authorPic">
             <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[0][i].username%></span>
-            <button type="button" data-toggle="modal" data-target="#myModal" onclick="myFunction('<%=data[0][i].name%>', '<%=data[0][i].info%>','<%=data[0][i].url%>', '<%=data[0][i].gallery_id%>' )"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true" ></span>Comment</button>
+        
+            <button  type="button" data-toggle="modal" data-target="#myModal" onclick="myFunction(this, '<%=data[0][i].name%>', '<%=data[0][i].info%>','<%=data[0][i].url%>', '<%=data[0][i].gallery_id%>')"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true" ></span>Comment</button>
             
 
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel">New message</h4>
-						</div>
-						<div class="modal-body">
-								<img class="img-responsive" id ="gallery_img" >
-                                <div class="content-title">
-                                    <div class="text-center">
-                                        <h3 id ="info"></h3>
-                                    </div>
-                                </div>
-                        <!-- 댓글 -->
-                        <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Comment</div>
-                                <table class="table" id="comment_data" >
-                                        
-                                        <tr><th>User name</th><th>comment</th></tr>
-                                    
-
-                                </table>
-                      
-                              </div>
-
-                              <form action="/gallery/comment/<%=data[0][i].gallery_id%>" method="post">
-                                <div class="box">
-                                    <div class="container-1">
-                                        <span class="icon"><i class="fa fa-search"></i></span>
-                                        <input type="comment" name="comment" placeholder="comment" id="comment" class="input" value=""/>
-                                    </div>
-                                </div>
-                                <button>submit</button>
-                            </form>
-
-
-                    
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-            </div>
-            
+			
+          
 
             
 			<% if (data[i].users_id==user.id){%>
@@ -135,7 +103,66 @@ function myFunction(name, info, img, gallery_id) {
 			no info
 		</p>
 		<% } %>
-	</div>
+    </div>
+    
+    <!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">New message</h4>
+                                <h4 id= "test">test</h4>
+                            </div>
+                            <div class="modal-body">
+                                    <img class="img-responsive" id ="gallery_img" >
+                                    <div class="content-title">
+                                        <div class="text-center">
+                                            <h3 id ="info"></h3>
+                                        </div>
+                                    </div>
+                            <!-- 댓글 -->
+                            <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Comment</div>
+                                    <table class="table" id="comment_data" >
+                                            
+                                            <tr><th >User name</th><th>comment</th></tr>
+                                            <% 
+                                            for(var k=0;k < data[1].length;k++){
+                                                console.log("test", id);
+                                                if(data[1][k].gallery_id ==id){%>
+                                               
+                                                <tr>
+                                                    <td><%=data[1][k].user_name%> </td>
+                                                    <td><%=data[1][k].comment%> </td>
+                                                </tr>
+    
+                                            <%}}%>
+        
+                                    </table>
+                          
+                                  </div>
+    
+                                  <form action="/gallery/comment/<%=id%>" method="post">
+                                    <div class="box">
+                                        <div class="container-1">
+                                            <span class="icon"><i class="fa fa-search"></i></span>
+                                            <input type="comment" name="comment" placeholder="comment" id="comment" class="input" value=""/>
+                                        </div>
+                                    </div>
+                                    <button>submit</button>
+                                </form>
+    
+    
+                        
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 </div>
 </div>
 
