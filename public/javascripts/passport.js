@@ -50,17 +50,18 @@ module.exports = function(passport) {
                 if (rows.length) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
+                    console.log(req.body);
                     // if there is no user with that username
                     // create the user
                     var newUserMysql = {
                         username: username,
                         password: bcrypt.hashSync(password, null, null),  // use the generateHash function in our user model
-                        email : req.body.email
+                        email : req.body.emil
                     };
 
                     var insertQuery = "INSERT INTO users (username, password, email ) values (?,?,?)";
 
-                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password,  newUserMysql.email],function(err, rows) {
+                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password,newUserMysql.email],function(err, rows) {
                         if(err) {
                             console.log(err.message);
                         } else {

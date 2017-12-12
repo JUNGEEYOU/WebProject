@@ -18,7 +18,7 @@ body {
     transition: 0.5s;
 }
 
-.content-title h3 a:hover {
+.content-title h3 a:hover, #comment:hover {
     color: #F39C12;
 }
 
@@ -28,7 +28,8 @@ body {
     position: relative;
 }
 
-.content-footer span a {
+.content-footer span a, #comment {
+    font-size: 11px;
     color: #fff;
     display: inline-block;
     padding: 6px 5px;

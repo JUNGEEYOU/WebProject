@@ -1,10 +1,69 @@
 
-  <link rel="stylesheet" href="/stylesheets/gallery.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ 
+
+
+  <!DOCTYPE html>
   
+  <!-- define angular app -->
+  <html ng-app="scotchy">
+  
+  <head>
+    <!-- SCROLLS -->
+  <title></title>
+  <base href="/" >
+  
+  <meta charset="utf-8">
+    <!-- SPELLS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+  
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+   
+    <link rel="stylesheet" href="/stylesheets/gallery.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+    <!-- <script src="javascripts/spa.js"></script> -->
+    <script src="javascripts/board.js"></script>
+  
+     
+    <!-- <meta name="fragment" content="#!"> -->
+  </head>
+  
+  <!-- define angular controller -->
+  <body ng-app="scotchy">
+  
+      <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+              <div class="navbar-header">
+  
+              </div>
+              <ul class="nav navbar-nav">
+                  <li><a href="/">Home</a></li>
+                  <li  ><a href="travel">Travel</a></li>
+                  <li ><a href="koreaFood">Korea food</a></li>
+                  <li ><a href="culturelInfo">Korea culture</a></li>
+                 
+                  <li class="active"><a href="gallery">Gallery</a></li>
+                  <li><a href="contact">Contact us</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                      <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                  <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <% if(user) { %>
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 
+                    <% }else {%>
+                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                       <%}%>
+              </ul>
+          </div>
+      </nav>
+  
+  
+      <div class="main">
   <div class="container">
 
         <form action="/gallery/search" method="get">
@@ -25,7 +84,7 @@
                     <% if(data.length){ 
                         
             for(var i = 0;i < data.length;i++) { %>
-                <aside  class="col-xs-6 col-md-4">
+                <aside  class="col-md-9 center-block">
                     <img src="../<%=data[i].url%>" class="img-responsive" >
                     <div class="content-title">
                         <div class="text-center">
@@ -62,6 +121,31 @@
     </div>
 
 
+
+
+</div>
+
+
+
+
+
+
+    <hr class="featurette-divider">
+    <footer class="text-center">
+        <div id="sns">
+            <a href="https://www.facebook.com/"><img src="images/facebook.png" alt="facebook" style="height:40px;"></a>
+            <a href="https://www.youtube.com/"><img src="images/youtube.png" alt="youtube" style="height:40px;"></a>
+            <a href="https://www.instagram.com/"><img src="images/linkedin.png" alt="linkedin" style="height:40px;"></a>
+            <a href="https://www.gmail.com/"><img src="images/gmail.png" alt="gmail" style="height:40px;"></a>
+            <a href="https://www.twitter.com/"><img src="images/twitter.jpg" alt="twitter" style="height:40px;"></a>
+            <a href="https://www.instagram.com/"><img src="images/instagram.jpg" alt="instagram" style="height:40px;"></a>
+    
+        </div>
+      <p>Learn all you need to know about this fascinating country here! </p>
+    
+      <p>KOREATRAVEL</p>
+    </footer>
+  
 
 
 

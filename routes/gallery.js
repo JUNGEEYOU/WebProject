@@ -49,6 +49,17 @@ router.get('/', function(req, res, next) {
  });
 });
 
+
+router.get('/logout', function(req, res, next) {
+    req.session.destroy(function(err){
+      if(err){console.log(err)}
+      res.send("<script>alert('로그아웃됨'); location.href='/';</script>");
+    }
+    
+    );
+    res.render('gallery', {user:req.user});
+  });
+
 router.get('/search', function(req, res, next) {
     console.log("search : ", req. query.search);
     var search = req. query.search;
@@ -136,10 +147,14 @@ router.post('/comment/:gallery_id', function(req, res, next) {
 
 
 
-router.get('/add', function(req, res, next) {
-    res.render('galleryadd');
+router.get('/add',isLoggedIn, function(req, res, next) {
+    res.render('galleryadd', {
+        user: req.user
+    });
   });
 
+ 
+  
 
 
 
@@ -176,7 +191,7 @@ router.get('/add', function(req, res, next) {
 
 
 
-  router.delete('/delete/:gallery_id',function(req, res, next){
+  router.get('/delete/:gallery_id',function(req, res, next){
     var gallery_id = req.params.gallery_id;
     
 
@@ -207,7 +222,7 @@ router.get('/add', function(req, res, next) {
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('galleryEdit',{page_title:"Edit Customers - Node.js",data:rows});
+            res.render('galleryEdit',{page_title:"Edit Customers - Node.js",data:rows,user:req.user});
                 
            
          });
@@ -247,3 +262,15 @@ router.get('/add', function(req, res, next) {
 
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+    
+      // if user is authenticated in the session, carry on
+      if (req.isAuthenticated())
+        return next();
+    
+      // if they aren't redirect them to the home page
+      
+      res.redirect('/login');
+    }
+

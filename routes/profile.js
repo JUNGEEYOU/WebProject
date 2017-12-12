@@ -8,6 +8,18 @@ router.get('/', isLoggedIn, function(req, res, next) {
   });
 });
 
+
+router.get('/logout', function(req, res, next) {
+  req.session.destroy(function(err){
+    if(err){console.log(err)}
+    res.send("<script>alert('로그아웃됨'); location.href='/';</script>");
+  }
+  
+  );
+  res.render('/', {user:req.user});
+});
+
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
@@ -17,5 +29,6 @@ function isLoggedIn(req, res, next) {
       return next();
   
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    
+    res.redirect('/login');
   }

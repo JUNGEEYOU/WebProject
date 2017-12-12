@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-  <script src="javascripts/spa.js"></script>
+  <!-- <script src="javascripts/spa.js"></script> -->
   <script src="javascripts/board.js"></script>
 
    
@@ -41,17 +41,22 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/travel">Travel</a></li>
-                <li><a href="/koreaFood">Korea food</a></li>
-                <li><a href="/culturelInfo">Korea culture</a></li>
+                <li><a href="travel">Travel</a></li>
+                <li><a href="koreaFood">Korea food</a></li>
+                <li><a href="culturelInfo">Korea culture</a></li>
                
-                <li><a href="/gallery">Gallery</a></li>
-                <li><a href="/contact">Contact us</a></li>
+                <li><a href="gallery">Gallery</a></li>
+                <li><a href="contact">Contact us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                
+                <% if(user) { %>
+                     <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 
+                     <% }else {%>
+                         <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <%}%>
             </ul>
         </div>
     </nav>
@@ -61,7 +66,168 @@
 
 
 
-    <div ng-view></div>
+    <div class="main">
+
+            <div id="mainlogo">
+                    <a href="/"><img src="images/logo.png" alt="Logo for Korean Travel" style="width:15%; ">
+                    </a>
+                </div>
+        
+                <div class="container" style="width:100%;">
+                    <div class="container" style="width:100%; ">
+        
+                        <div
+                            id="myCarousel"
+                            class="carousel slide"
+                            data-ride="carousel"
+                            style="width:100%;">
+        
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                            </ol>
+        
+                            <div class="carousel-inner" style="width:100%;">
+                                <div class="item active">
+                                    <img id="img1" src="images/visual_img02_big.jpg" alt="Los Angeles">
+                                    <div class="carousel-caption">
+                                        <p>One Fine Day<br/>- Jeonju Hanok Village</p>
+                                    </div>
+                                </div>
+        
+                                <div class="item">
+                                    <img id="img1" src="images/visual_img03_big.jpg" alt="Chicago">
+                                    <div class="carousel-caption">
+                                        <p>Snowscape of Gwangharu Pavilion<br/>- Namwon-si, Jeollabuk-do</p>
+                                    </div>
+                                </div>
+        
+                                <div class="item">
+                                    <img id="img1" src="images/visual_img04_big.jpg" alt="New york">
+                                    <div class="carousel-caption">
+                                        <p>Alpensia Ski Resort at night<br/>- Pyeongchang-gun, Gangwon-do</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img id="img1" src="images/visual_img01_big.jpg" alt="New york">
+                                    <div class="carousel-caption">
+                                        <p>Woljeongsa Temple in Winter</p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+        
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container" style="width:100%;">
+                        <div class="jumbotron" style="width:100%;">
+                            <h1>SEOUL</h1>
+                            <p>The capital and heart of Korea’s culture, education, politics and economy,
+                                Seoul offers a myriad of attractions for all to enjoy.</p>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol id="ol_list" class="carousel-indicators">
+                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    </ol>
+        
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active">
+                                            <div class="thumbnail">
+                                                <img src="images/2200882_image_1.png" alt="carousel_li1">
+                                                <img id="blitbar" src="images/blit_bar.png">
+                                                <div class="caption">
+                                                    <dl>
+                                                        <h2>Nature & Art Await in Pyeongchang</h2>
+                                                        <dd>Pyeongchang is home to relics of traditional culture, galleries full of
+                                                            modern art, and many more unique attractions. This winter, take in the
+                                                            refinement of Pyeongchang’s nature and arts.
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="item">
+                                            <div class="thumbnail">
+                                                <img src="images/2200882_image_2.png" alt="carousel_li2">
+                                                <img id="blitbar" src="images/blit_bar.png">
+                                                <div class="caption">
+                                                    <dl>
+                                                        <h2>Pedal your Way through Nature on Railbikes!</h2>
+                                                        <dd>Hop on a railbike and pedal your way along the railroad tracks for the
+                                                            opportunity to get a light workout and enjoy wonderful landscapes of Korea at
+                                                            the same time.</dd>
+                                                    </dl>
+        
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="item">
+                                            <div class="thumbnail">
+                                                <img src="images/2200882_image_3.png" alt="carousel_li3">
+                                                <img id="blitbar" src="images/blit_bar.png">
+                                                <div class="caption">
+                                                    <dl>
+                                                        <h2>Enjoy Seoul as You Please at Ichon-dong!</h2>
+                                                        <dd>Whether it’s historical insight, cultural experience, or a relaxing vacation
+                                                            you’re seeking, Ichon-dong is sure to satisfy your expectations!</dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            
+        
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="images/2200882_image_4.png" alt="winter">
+                                    <img id="blitbar" src="images/blit_bar.png">
+                                    <div class="caption" style="margin-bottom: 5%">
+                                            <h2>Get Active this Winter at Korea’s Ski Resorts</h2>
+                                            <dd>One of the best things about winter’s arrival is the chance to enjoy skiing and snowboarding. Ski resorts in Korea offer slopes for a variety of skill levels, from absolute beginners to experts</dd>
+                                    </div>
+                                </div>
+                            </div>
+        
+        
+                            <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <img src="images/2200882_image_5.png" alt="winter">
+                                        <img id="blitbar" src="images/blit_bar.png">
+                                        <div class="caption" style="margin-bottom: 5%">
+                                                <h2>Fall Foliage Destinations around Seoul</h2>
+                                                <dd>To enjoy the fall foliage without traveling far, plan a visit to one of the following sites, known as the best places to see rich fall foliage in the city.</dd>
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+        
+                    </div>
+                </div>
+        
+    </div>
  
 
 
