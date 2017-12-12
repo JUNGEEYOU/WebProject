@@ -16,8 +16,8 @@
                 // })
     
                //aboutKorea
-               .when('/aboutKorea', {
-                templateUrl : 'aboutKorea'
+               .when('/travel', {
+                templateUrl : 'travel'
             })
 
                 //Koreafood 

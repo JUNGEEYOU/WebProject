@@ -15,7 +15,7 @@ var connection  = require('express-myconnection');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var main = require('./routes/main');
-var aboutKorea = require('./routes/aboutKorea');
+var travel = require('./routes/travel');
 var koreaFood = require('./routes/koreaFood');
 var culturelInfo = require('./routes/culturelInfo');
 var gallery = require('./routes/gallery');
@@ -79,7 +79,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', index);
 app.use('/users', users);
 app.use('/main', main);
-app.use('/aboutKorea', aboutKorea);
+app.use('/travel', travel);
 app.use('/culturelInfo', culturelInfo);
 app.use('/koreaFood', koreaFood);
 app.use('/culturelInfo', culturelInfo);
