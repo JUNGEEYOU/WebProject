@@ -64,9 +64,12 @@
 
                 })
 
-                .otherwise({
-                    redirectTo: '/'
-                  });
+
+                //     //serch
+                //   .when('/galleryComment', {
+                //         templateUrl : 'galleryComment'
+    
+                //     });
 
            
 

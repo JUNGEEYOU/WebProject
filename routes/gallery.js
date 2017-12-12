@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
     //select * from users inner join gallery on users.id= gallery.users_idinner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id
      var query = connection.query('select * from users inner join gallery on users.id= gallery.users_id;'+'select *  from gallery inner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id ;' ,function(err,rows)
      {
-        console.log("user", req.user );
+        //console.log("user", req.user );
         // console.log("join: ",rows );
          if(err)
              console.log("Error Selecting : %s ",err );
@@ -42,56 +42,12 @@ router.get('/', function(req, res, next) {
              if(req.user == undefined){
                  req.user = {id : 0};
              }
-        // console.log(rows);
-        // var gallaryInfo =  new Array();
-        // for(var i=0; i<rows.length; i++) {
-        //     console.log("ROWS: " + i + "st");
-        //     gallaryInfo.push( {
 
-        //     }
-
-        //     )
-        //     console.log(rows[0][i]);
-        //     gallaryInfo.push(rows[i]);
-        // }
          res.render('gallery',{data:rows, user:req.user, id: 0,comments: rows[1]});
       });
-      
-      //console.log(query.sql);
+
  });
 });
-
-
-//작업 
-
-// router.get('/:gallery_id', function(req, res, next) {
-    
-//       var gallery_id = req.params.gallery_id;
-
-//       req.getConnection(function(err,connection){
-//         //select * from users inner join gallery on users.id= gallery.users_idinner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id
-//          var query = connection.query('select * from gallery inner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id where gallery_comment.gallery_id =  ?',[gallery_id] ,function(err,rows)
-//          {
-           
-//              console.log("id------: ",rows );
-//              if(err)
-//                  console.log("Error Selecting : %s ",err );
-      
-    
-//              res.render('gallery',{comments:rows});
-                 
-//           });
-          
-//           //console.log(query.sql);
-//      });
-//     });
-
-
-
-
-
-
-
 
 router.get('/search', function(req, res, next) {
     console.log("search : ", req. query.search);
@@ -147,6 +103,34 @@ router.post('/comment/:gallery_id', function(req, res, next) {
     });
 
 
+
+  router.get('/galleryComment/:gallery_id', function(req, res, next) {
+    var gallery_id = req.params.gallery_id;
+
+
+    console.log("gaaaa", gallery_id);
+    req.getConnection(function(err,connection){
+       
+        var query = connection.query('select * from gallery inner join gallery_comment on gallery.gallery_id = gallery_comment.gallery_id where gallery_comment.gallery_id =  ?;'+'select * from users inner join gallery on users.id= gallery.users_id where gallery.gallery_id = ?',[gallery_id, gallery_id],function(err,rows)
+        {
+            
+            if(err)
+                console.log("Error Selecting : %s ",err );
+     
+                if(req.user == undefined){
+                    req.user = {id : 0};
+                }
+
+                console.log("tttttttttt", rows[1]);
+
+            res.render('galleryComment',{title : "test", data:rows, user:req.user});
+                
+           
+         });
+         
+         //console.log(query.sql);
+    }); 
+    });
 
 
 

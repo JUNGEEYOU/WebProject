@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="/public/stylesheets/gallery.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+
+<%console.log("tssssss", data[1][0].name); %>
+<aside class="col-xs-12 col-md-12 center-block" >
+<img src="/<%=data[1][0].url%>" class="img-responsive" >
+<div class="content-title">
+    <div class="text-center">
+        <h3><a href="#" id="thumbTitle"><%=data[1][0].name%></a></h3>
+        <h3><%=data[1][0].info%></h3>
+      
+    </div>
+</div>
+<div class="content-footer">
+    <img class="user-small-img" src="/public/images/profile.jpg" id="authorPic">
+    <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[1][0].username%></span>
+
+    <% if (data[1][0].users_id==user.id){%>
+    <span class="pull-right">
+    <a class="a-inside edit" href="/gallery/edit/<%=data[1][0].gallery_id%>">Edit</a>
+    <a class="a-inside delete" href="/gallery/delete/<%=data[1][0].gallery_id%>">Delete</a>
+    </span>
+    <% }%>
+    <div class="user-details">
+        <div class="user-img">
+            <img src="/public/images/profile.jpg" class="img-responsive" id="authorPic">
+        </div>
+        <span class="user-full-details">
+        <h3 id="authorName2"><%=data[1][0].username%></h3>
+        <p id="authorJob">
+            A student from Coventry University
+        </p>
+        </span>
+    </div>
+</div>
+</aside>
+ 
+ <table class="table" id="comment_data" >
+    
+            <tr><th >User name</th><th>comment</th></tr>
+            <%  if(data[0]){ for (var i =0; i< data[0].length ; i++ ){  %>
+
+                    <tr>
+                            <td><%=data[0][i].user_name%> </td>
+                            <td><%=data[0][i].comment%> </td>
+                      </tr>
+                <% }} %>
+</table>
+
+
+<form action="/gallery/comment/<%=data[1][0].gallery_id%>"\ method="post">
+    <div class="box">
+        <div class="container-1">
+            <span class="icon"><i class="fa fa-search"></i></span>
+            <input type="comment" name="comment" placeholder="comment" id="comment" class="input" value=""/>
+        </div>
+    </div>
+    <button>submit</button>
+</form>

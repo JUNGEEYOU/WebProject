@@ -24,6 +24,7 @@ var signup = require('./routes/signup');
 var login = require('./routes/login');
 var serch = require('./routes/serch');
 var profile = require('./routes/profile');
+//var galleryComment = require('./routes/galleryComment');
 
 
 var app = express();
@@ -88,7 +89,7 @@ app.use('/signup', signup);
 app.use('/login', login);
 app.use('/serch', serch);
 app.use('/profile',profile);
-
+//app.use('/galleryComment', galleryComment);
 
 
   

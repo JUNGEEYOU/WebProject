@@ -10,20 +10,7 @@
 <script src="javascripts/board.js"></script>
 <script src="javascripts/spa.js"></script>
 
-<script type="text/javascript">
-var id = 10;
-function myFunction(bbb, name, info, img, gallery_id,test) {
-    console.log("Button Call!");
-    var srt; 
-    document.getElementById("myModalLabel").innerHTML =  name;
-    document.getElementById("info").innerHTML =  info;
-    document.getElementById("gallery_img").src =img;
-    document.getElementById("test").innerHTML = gallery_id;
-    window.fucking = 100;
-    console.log(fucking);
-    console.log("idid",gallery_id);
-}
-</script>
+
 
 <div class="container">
 	<div class="data-btn">
@@ -57,13 +44,13 @@ function myFunction(bbb, name, info, img, gallery_id,test) {
 		<div class="content-footer">
 			<img class="user-small-img" src="images/profile.jpg" id="authorPic">
             <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[0][i].username%></span>
-        
-            <button type="button" data-toggle="modal" data-target="#myModal" onclick="myFunction(this, '<%=data[0][i].name%>', '<%=data[0][i].info%>','<%=data[0][i].url%>', '<%= data[1]%>')"><span class="glyphicon glyphicon-comment" style="margin-left: 10px" aria-hidden="true" ></span>Comment</button>
+    
+            <a class="a-inside" href="/gallery/galleryComment/<%=data[0][i].gallery_id%>"><span class="glyphicon glyphicon-comment" style="margin-left: 10px"  ></span>Comment</a>
             
 			<% if (data[0][i].users_id==user.id){%>
 			<span class="pull-right">
-			<a class="a-inside edit" href="../gallery/edit/<%=data[0][i].gallery_id%>">Edit</a>
-			<a class="a-inside delete" href="../gallery/delete/<%=data[0][i].gallery_id%>">Delete</a>
+			<a class="a-inside edit" href="/gallery/edit/<%=data[0][i].gallery_id%>">Edit</a>
+			<a class="a-inside delete" href="/gallery/delete/<%=data[0][i].gallery_id%>">Delete</a>
 			</span>
 			<% }%>
 			<div class="user-details">
@@ -86,65 +73,5 @@ function myFunction(bbb, name, info, img, gallery_id,test) {
 		<% } %>
     </div>
     
-    <!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">New message</h4>
-                                <h4 id= "test">test</h4>
-                            </div>
-                            <div class="modal-body">
-                                    <img class="img-responsive" id ="gallery_img" >
-                                    <div class="content-title">
-                                        <div class="text-center">
-                                            <h3 id ="info"></h3>
-                                        </div>
-                                    </div>
-                            <!-- 댓글 -->
-                            <div class="panel panel-default">
-                                    <!-- Default panel contents -->
-                                    <div class="panel-heading">Comment</div>
-                                    <table class="table" id="comment_data" >
-                                        <script>
-                                            var a = window.fucking;
-                                            console.log("FUCK!" + a);
-                                            </script>
-                                            <tr><th >User name</th><th>comment</th></tr>
-                                            <% 
-                                            for(var k=0;k < data[1].length;k++){
-                                                console.log("Length" + data[1].length);
-                                                console.log("TEST", id);
-                                                console.log("ID CHECK" + data[1][k].gallery_id);%>
-                                                if(data[1][k].gallery_id == id)
-                                                <tr>
-                                                    <td><%=data[1][k].user_name%> </td>
-                                                    <td><%=data[1][k].comment%> </td>
-                                                </tr>
-                                            <%}%>
-                                    </table>
-                                  </div>
-                                  <form action="/gallery/comment/<%=id%>" method="post">
-                                    <div class="box">
-                                        <div class="container-1">
-                                            <span class="icon"><i class="fa fa-search"></i></span>
-                                            <input type="comment" name="comment" placeholder="comment" id="comment" class="input" value=""/>
-                                        </div>
-                                    </div>
-                                    <button>submit</button>
-                                </form>
-    
-    
-                        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-</div>
-</div>
 
-
+</div>
