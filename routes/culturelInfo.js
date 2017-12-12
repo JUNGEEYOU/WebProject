@@ -55,8 +55,8 @@ router.get('/', function(req, res, next) {
     var search = req.query.search;
 
         req.getConnection(function (err, connection) {
-      
-            connection.query("SELECT * FROM culture WHERE culture_name LIKE ? or culture_info LIKE ? ",['%'+search+'%', '%'+search+'%'], function(err, rows)
+      //select * from culture inner join culture_comment  on culture.culture_id = culture_comment.culture_id  WHERE culture.culture_name LIKE ? or culture.culture_info LIKE ?; 
+            connection.query("select * from culture inner join culture_comment  on culture.culture_id = culture_comment.culture_id  WHERE culture.culture_name LIKE ? or culture.culture_info LIKE ?",['%'+search+'%', '%'+search+'%'], function(err, rows)
             {
                  if(err)
                      console.log("Error deleting : %s ",err );
@@ -203,6 +203,8 @@ router.get('/add',isLoggedIn, function(req, res, next) {
                if(err)
                    console.log("Error deleting : %s ",err );
               
+
+                   console.log("del", rows);
                res.redirect('/culturelInfo');
                
           });

@@ -80,28 +80,28 @@
 
         <h1><%=search%> 에 대한 검색 결과 입니다.</h1>
 
-        <div class="row" id="thumbsContainer"></div>
-            <div class="col-md-4" id="thumb">
+        <div class="row" id="thumbsContainer">
+           
                     <% if(data.length){ 
                         
             for(var i = 0;i < data.length;i++) { %>
-                <aside  class="col-md-9 center-block">
+                <aside class="col-xs-6 col-md-4 center-block">
                     <img src="../<%=data[i].culture_url%>" class="img-responsive" >
                     <div class="content-title">
                         <div class="text-center">
-                            <h3><a href="#" id="thumbTitle"><%=data[i].name%></a></h3>
-                            <h3><%=data[i].info%></h3>
+                            <h3><a href="#" id="thumbTitle"><%=data[i].culture_name%></a></h3>
+                            <h3><%=data[i].culture_info%></h3>
                         </div>
                     </div>
                     <div class="content-footer">
                         <img class="user-small-img" src="/public/images/profile.jpg" id="authorPic">
-                        <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].culture_name%></span>
+                        <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].culture_username%></span>
 
 
                         <div class="user-details">
                             <div class="user-img"><img src="/images/profile.jpg" class="img-responsive" id="authorPic"></div>
                             <span class="user-full-details">
-                                <h3 id="authorName2"><%=data[i].culture_name%></h3>
+                                <h3 id="authorName2"><%=data[i].culture_username%></h3>
                                 <p id="authorJob">A student from Coventry University</p>
                             </span>
                         </div>

@@ -69,8 +69,8 @@ router.get('/search', function(req, res, next) {
     var search = req. query.search;
 
         req.getConnection(function (err, connection) {
-      
-            connection.query("SELECT * FROM gallery WHERE name LIKE ? or info LIKE ? ",['%'+search+'%', '%'+search+'%'], function(err, rows)
+      //select * from gallery inner join gallery_comment  on gallery.gallery_id = gallery_comment.gallery_id  WHERE gallery.name LIKE ? or gallery.info LIKE ?; 
+            connection.query("select * from gallery inner join gallery_comment  on gallery.gallery_id = gallery_comment.gallery_id WHERE gallery.name LIKE ? or gallery.info LIKE ?",['%'+search+'%', '%'+search+'%'], function(err, rows)
             {
                  if(err)
                      console.log("Error deleting : %s ",err );

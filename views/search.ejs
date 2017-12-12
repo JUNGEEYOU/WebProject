@@ -80,11 +80,11 @@
         <h1><%=search%> 에 대한 검색 결과 입니다.</h1>
 
         <div class="row" id="thumbsContainer"></div>
-            <div class="col-md-4" id="thumb">
+           
                     <% if(data.length){ 
                         
             for(var i = 0;i < data.length;i++) { %>
-                <aside  class="col-md-9 center-block">
+                <aside  class="col-xs-6 col-md-4 center-block">
                     <img src="../<%=data[i].url%>" class="img-responsive" >
                     <div class="content-title">
                         <div class="text-center">
@@ -94,7 +94,7 @@
                     </div>
                     <div class="content-footer">
                         <img class="user-small-img" src="/public/images/profile.jpg" id="authorPic">
-                        <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].name%></span>
+                        <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[i].user_name%></span>
 
 
 
@@ -102,7 +102,7 @@
                         <div class="user-details">
                             <div class="user-img"><img src="/images/profile.jpg" class="img-responsive" id="authorPic"></div>
                             <span class="user-full-details">
-                                <h3 id="authorName2"><%=data[i].name%></h3>
+                                <h3 id="authorName2"><%=data[i].user_name%></h3>
                                 <p id="authorJob">A student from Coventry University</p>
                             </span>
                         </div>
