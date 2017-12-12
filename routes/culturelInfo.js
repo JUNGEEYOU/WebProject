@@ -197,7 +197,7 @@ router.get('/add',isLoggedIn, function(req, res, next) {
   
        req.getConnection(function (err, connection) {
           
-          connection.query("DELETE FROM culture  WHERE culture_id = ? ",[culture_id], function(err, rows)
+          connection.query("SET foreign_key_checks = 0;"+"DELETE FROM culture  WHERE culture_id = ? ",[culture_id], function(err, rows)
           {
               
                if(err)

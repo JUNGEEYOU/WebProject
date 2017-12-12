@@ -7,7 +7,7 @@ var progress = require('progress-stream'); // to have a progress bar during uplo
 var multer = require('multer'); // library to uplaod photos https://github.com/expressjs/multer
 var path = require('path');
 var bodyParser = require("body-parser");
-
+// var async = require('async');
 
 
 var storage = multer.diskStorage({
@@ -136,8 +136,7 @@ router.post('/comment/:gallery_id', function(req, res, next) {
                     req.user = {id : 0};
                 }
 
-                console.log("tttttttttt", rows[1]);
-
+             
             res.render('galleryComment',{title : "test", data:rows, user:req.user});
                 
            
@@ -201,7 +200,7 @@ router.get('/add',isLoggedIn, function(req, res, next) {
 
      req.getConnection(function (err, connection) {
         
-        connection.query("DELETE FROM gallery  WHERE gallery_id = ? ",[gallery_id], function(err, rows)
+        connection.query("SET foreign_key_checks = 0;"+"DELETE FROM gallery  WHERE gallery_id = ? ",[gallery_id], function(err, rows)
         {
             
              if(err)
