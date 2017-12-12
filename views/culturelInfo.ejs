@@ -15,7 +15,8 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  
-  <link rel="stylesheet" href="stylesheets/KoreanFood.css">
+ 
+  <link rel="stylesheet" href="stylesheets/gallery.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -59,7 +60,86 @@
     </nav>
 
 
+
+
+
+
     <div class="main">
+            <div class="container">
+                    
+                        <div class="row">
+                    
+                        <div class="data-btn col-md-6 pull-left ">
+                            <button onclick="addCulture();"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>    Write</button>
+                        </div>
+                        <div class="col-md-6">
+                        <form action="/culturelInfo/culture_serch" method="get" class="form-inline pull-right ">
+                                
+                                    <span class="icon"><i class="fa fa-search"></i></span>
+                                    <input class = "form-control" type="search" id="search" name="search" placeholder="search"/>
+                                
+                    
+                            <button class="btn btn-default">search</button>
+                        </form>
+                        </div>
+                        
+                    </div>
+                    
+                        <div class="row center-block" id="thumb">
+                              
+                    
+                    
+                            <% if(data[0].length){ for(var i=0;i < data[0].length;i++) { %>
+                                
+                            <aside class="col-xs-6 col-md-4 center-block" >
+                            <h3 class="text-center"> <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>   <%=data[0][i].culture_name%> <br></h3>
+                            <br>
+                            <img src="<%=data[0][i].culture_url%>" class="img-responsive img-rounded" >
+                            <div class="content-title">
+                                <div class="text-center">
+                                
+                                    <p><%=data[0][i].culture_info%></p>
+                                  
+                                </div>
+                            </div>
+                            <div class="content-footer">
+                                <img class="user-small-img" src="images/profile.jpg" id="authorPic">
+                                <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[0][i].culture_username%></span>
+                        
+                                <a class="a-inside" id ="comment" href="/culturelInfo/cultureComment/<%=data[0][i].culture_id%>"><span class="glyphicon glyphicon-comment" style="margin-left: 10px"  ></span>  Comment</a>
+                                
+                                <% if (data[0][i].users_id==user.id){%>
+                                <span class="pull-right">
+                                <a class="a-inside edit" href="/culturelInfo/edit/<%=data[0][i].culture_id%>">Edit</a>
+                                <a class="a-inside delete" href="/culturelInfo/delete/<%=data[0][i].culture_id%>">Delete</a>
+                                </span>
+                                <% }%>
+                                <div class="user-details">
+                                    <div class="user-img">
+                                        <img src="images/profile.jpg" class="img-responsive" id="authorPic">
+                                    </div>
+                                    <span class="user-full-details">
+                                    <h3 id="authorName2"><%=data[0][i].culture_username%></h3>
+                                    <p id="authorJob">
+                                        A student from Coventry University
+                                    </p>
+                                    </span>
+                                </div>
+                            </div>
+                            </aside>
+                            <% } }else{ %>
+                            <p>
+                                no info
+                            </p>
+                            <% } %>
+                        </div>
+                        
+                    
+                    </div>
+
+
+
+
     </div>
 
 

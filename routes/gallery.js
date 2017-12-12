@@ -60,6 +60,10 @@ router.get('/logout', function(req, res, next) {
     res.render('gallery', {user:req.user});
   });
 
+
+
+
+
 router.get('/search', function(req, res, next) {
     console.log("search : ", req. query.search);
     var search = req. query.search;
@@ -74,7 +78,7 @@ router.get('/search', function(req, res, next) {
                 console.log("this: ", rows);
 
 
-                res.render('search',{data: rows, search: search} );
+                res.render('search',{data: rows, search: search,  user: req.user} );
             });
          });
           
@@ -189,7 +193,7 @@ router.get('/add',isLoggedIn, function(req, res, next) {
 
 
 
-
+/////
 
   router.get('/delete/:gallery_id',function(req, res, next){
     var gallery_id = req.params.gallery_id;

@@ -5,6 +5,12 @@ window.location.href = '/gallery/add';
 }
 
 
+function addCulture(){
+    
+window.location.href = '/culturelInfo/add';
+}
+
+
 
 function comment(){
     

@@ -24,6 +24,7 @@ var signup = require('./routes/signup');
 var login = require('./routes/login');
 var serch = require('./routes/serch');
 var profile = require('./routes/profile');
+var culture_serch =require('./routes/culture_serch');
 
 //var galleryComment = require('./routes/galleryComment');
 
@@ -90,7 +91,7 @@ app.use('/signup', signup);
 app.use('/login', login);
 app.use('/serch', serch);
 app.use('/profile',profile);
-// app.use('/logout',logout);
+app.use('/culture_serch', culture_serch);
 //app.use('/galleryComment', galleryComment);
 
 

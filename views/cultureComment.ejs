@@ -1,5 +1,7 @@
 
+
 <!DOCTYPE html>
+
 <!-- define angular app -->
 <html ng-app="scotchy">
 
@@ -15,7 +17,8 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  
-  <link rel="stylesheet" type="text/css" href="stylesheets/login.css" />
+
+  <link rel="stylesheet" href="/public/stylesheets/gallery.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -41,7 +44,7 @@
                 <li><a href="/">Home</a></li>
                 <li  ><a href="travel">Travel</a></li>
                 <li ><a href="koreaFood">Korea food</a></li>
-                <li ><a href="culturelInfo">Korea culture</a></li>
+                <li class="active"><a href="culturelInfo">Korea culture</a></li>
                
                 <li><a href="gallery">Gallery</a></li>
                 <li><a href="contact">Contact us</a></li>
@@ -49,46 +52,77 @@
             <ul class="nav navbar-nav navbar-right">
                     <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                 <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li class="active"><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-               
+                <% if(user) { %>
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 
+                    <% }else {%>
+                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                       <%}%>
             </ul>
         </div>
     </nav>
 
 
     <div class="main">
+
+
+<aside class="col-xs-12 col-md-12 center-block" >
+        <h1 class="text-center"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span><%=data[1][0].culture_name%></h1>
+<img src="/<%=data[1][0].culture_url%>" class="img-responsive center-block" style="width:600px;" >
+<div class="content-title">
+    <div class="text-center">
         
-<div class="container">
-        <section id="content">
-            <div id=logo>
-                <a href="index"><img src="images/logo.png" alt="Logo for Korean Travel"></a>
-            </div>
-            <form action="/login" method="post">
-                <h1>Login Form</h1>
-                <div>
-                    <input type="text" placeholder="username" required="" id="username" name="username"/>
-                </div>
-                <div>
-                    <input type="password" placeholder="password" required="" id="password" name="password" />
-                </div>
-                <!-- <div class="form-group">
-                        <label>Remember Me</label>
-                        <input type="checkbox" class="form-control" name="remember" value="yes">
-                    </div> -->
-    
-                <div>
-                    <input type="submit" value="Log in" />
-                    <!-- <a href="#">Lost your password?</a> -->
-                    <a href="signup">Register</a>
-                </div>
-
-
-            </form>
-
-        </section>
-
+        <h3><%=data[1][0].culture_info%></h3>
+      
     </div>
+</div>
+<div class="content-footer">
+    <img class="user-small-img" src="/public/images/profile.jpg" id="authorPic">
+    <span style="font-size: 16px;color: #fff;" id="authorName1"><%=data[1][0].culture_username%></span>
 
+    <% if (data[1][0].users_id==user.id){%>
+    <span class="pull-right">
+    <a class="a-inside edit" href="/culturelInfo/edit/<%=data[1][0].culture_id%>">Edit</a>
+    <a class="a-inside delete" href="/culturelInfo/delete/<%=data[1][0].culture_id%>">Delete</a>
+    </span>
+    <% }%>
+    <div class="user-details">
+        <div class="user-img">
+            <img src="/public/images/profile.jpg" class="img-responsive" id="authorPic">
+        </div>
+        <span class="user-full-details">
+        <h3 id="authorName2"><%=data[1][0].culture_username%></h3>
+        <p id="authorJob">
+            A student from Coventry University
+        </p>
+        </span>
+    </div>
+</div>
+</aside>
+ 
+ <table class="table" id="comment_data" >
+    
+            <tr><th >User name</th><th>comment</th></tr>
+            <%  if(data[0]){ for (var i =0; i< data[0].length ; i++ ){  %>
+
+                    <tr>
+                            <td><%=data[0][i].culture_username%> </td>
+                            <td><%=data[0][i].culture_comment%> </td>
+                      </tr>
+                <% }} %>
+</table>
+
+
+<form action="/culturelInfo/comment/<%=data[1][0].culture_id%>" method="post" class="form-inline">
+  
+                <div class="form-group">
+                        <label for="exampleInputName2">Comment <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> : </label>
+            <input  style="width:100%"type="comment" name="comment" placeholder="comment" id="comment" class="input form-control" value=""/>
+            </div>
+
+    <button class="btn btn-default  ">submit</button>
+</form>
+
+<br>
 
 </div>
 
@@ -112,3 +146,4 @@
     
       <p>KOREATRAVEL</p>
     </footer>
+  
