@@ -5,15 +5,7 @@
 p1 {
     font-family: 'Coming Soon', cursive;
     font-size: 20px;
-    /* text-align: center; */
-}
-.jumbotron{
-   /* padding: 40px 40px; */
-   /* margin: 0px 40px 0px ; */
-
-}
-p2 {
-    /* text-align: center; */
+ 
 }
 .container {
     text-align: center;
@@ -21,4 +13,9 @@ p2 {
     width: 100%;
     margin: 0 auto;
     position: relative;
+}
+
+
+.foodimg{
+    width:300px;
 }

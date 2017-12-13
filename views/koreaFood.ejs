@@ -1,130 +1,95 @@
-
 <!DOCTYPE html>
-
-<!-- define angular app -->
-<html ng-app="scotchy">
-
+<html>
 <head>
-  <!-- SCROLLS -->
-<title></title>
-<base href="/" >
-
+<title>Korea Food</title>
 <meta charset="utf-8">
-  <!-- SPELLS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
- 
-  <link rel="stylesheet" href="stylesheets/KoreanFood.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-  <!-- <script src="javascripts/spa.js"></script> -->
-  <script src="javascripts/board.js"></script>
-
-   
-  <!-- <meta name="fragment" content="#!"> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="javascripts/board.js"></script>
+<link rel="stylesheet" href="stylesheets/KoreanFood.css">
 </head>
-
-<!-- define angular controller -->
-<body ng-app="scotchy">
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li  ><a href="travel">Travel</a></li>
-                <li class="active"><a href="koreaFood">Korea food</a></li>
-                <li><a href="culturelInfo">Korea culture</a></li>
-               
-                <li><a href="gallery">Gallery</a></li>
-                <li><a href="contact">Contact us</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                    <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <% if(user) { %>
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 
-                    <% }else {%>
-                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                       <%}%>
-            </ul>
-        </div>
-    </nav>
-
-
-    <div class="main">
-    <div class="center-block">
-    <div id=logo>
-        <img src="images/hansik1.jpg" alt="Logo for Korean Travel" style="width:60%">
-    </div>
+<body>
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+	<div class="navbar-header">
+	</div>
+	<ul class="nav navbar-nav">
+		<li><a href="/">Home</a></li>
+		<li><a href="travel">Travel</a></li>
+		<li class="active"><a href="koreaFood">Korea food</a></li>
+		<li><a href="culturelInfo">Korea culture</a></li>
+		<li><a href="gallery">Gallery</a></li>
+		<li><a href="contact">Contact us</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+		<li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<% if(user) { %>
+		<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		<% }else {%>
+		<li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		<%}%>
+	</ul>
 </div>
-
-
-       
-<div class="row center-block">
-     <div class="col-xs-1 col-md-1"></div>
-    <div class="jumbotron  col-xs-10 col-md-10">
-        <p1 id ="foodfont" class="text-center">Hansik refers to traditional Korean food, centered around rice, served alongside a bowl of soup and a variety of side dishes. Most foods use meat and vegetables as the main ingredients, and are soaked in brine or water rather than fried in
-            oil, making hansik wonderful for one's health. More than anything else, hansik’s most outstanding feature is the amount of fermented foods, which are beneficial in improving digestion, as well as preventing cancer. The most well-known
-            fermented foods are kimchi (fermented cabbage), ganjang (soy sauce), doenjang (soybean paste), and gochujang (Korean chili paste). Popular dishes among international visitors include bulgogi, bibimbap, and hanjeongsik (Korean table d'hote).
-            Bulgogi is a marinated beef or sometimes pork dish that is sweet and tender in texture. In particular, the soy sauce seasoning is not spicy, thus making it a great introductory dish to hansik. Bibimbap, on the other hand, is a complete
-            meal in and of itself, mixing rice with all kinds of vegetables of one's choice, topped with gochujang for that extra kick. Hanjeongsik is served as a full table’s worth of side dishes featuring meat and vegetables along with soups, steamed
-            foods, and hot pots. This is a popular choice for visitors looking to try a little bit of everything.</p1>
-    </div>
-    <div class="col-xs-1 col-md-1"></div>
+</nav>
+<div class="main">
+	<div class="center-block">
+		<div id=logo>
+			<img src="images/hansik1.jpg" alt="Logo for Korean Travel" style="width:60%">
+		</div>
+	</div>
+	<div class="row center-block">
+		<div class="col-xs-1 col-md-1">
+		</div>
+		<div class="jumbotron col-xs-10 col-md-10">
+			<p1 id="foodfont" class="text-center">Hansik refers to traditional Korean food, centered around rice, served alongside a bowl of soup and a variety of side dishes. Most foods use meat and vegetables as the main ingredients, and are soaked in brine or water rather than fried in oil, making hansik wonderful for one's health. More than anything else, hansik’s most outstanding feature is the amount of fermented foods, which are beneficial in improving digestion, as well as preventing cancer. The most well-known fermented foods are kimchi (fermented cabbage), ganjang (soy sauce), doenjang (soybean paste), and gochujang (Korean chili paste). Popular dishes among international visitors include bulgogi, bibimbap, and hanjeongsik (Korean table d'hote). Bulgogi is a marinated beef or sometimes pork dish that is sweet and tender in texture. In particular, the soy sauce seasoning is not spicy, thus making it a great introductory dish to hansik. Bibimbap, on the other hand, is a complete meal in and of itself, mixing rice with all kinds of vegetables of one's choice, topped with gochujang for that extra kick. Hanjeongsik is served as a full table’s worth of side dishes featuring meat and vegetables along with soups, steamed foods, and hot pots. This is a popular choice for visitors looking to try a little bit of everything.</p1>
+		</div>
+		<div class="col-xs-1 col-md-1">
+		</div>
+	</div>
+	<div class="row center-block">
+		<div class="col-xs-6 col-md-4">
+			<img class="img-thumbnail center-block foodimg" src="images/2482704_image_1.jpg" alt="Generic placeholder image">
+			<h3 class="text-center">Traditional Korean cuisine</h3>
+			<p class="text-center">
+				Michelin Guide is a world-famous guide to the best restaurants across the globe. This year, there were many additions in the area of Seoul, especially focusing on restaurants serving Korean cuisine.
+			</p>
+		</div>
+		<div class="col-xs-6 col-md-4">
+			<img class="img-thumbnail center-block foodimg" src="images/2482704_image_2.jpg" alt="Generic placeholder image">
+			<h3 class="text-center">The essence of Korean cuisine</h3>
+			<p class="text-center">
+				Gaon is a first-class restaurant serving Korean cuisine course meals. The restaurant specializes in presenting dishes that fully explore the natural flavors of the seasonal ingredients.
+			</p>
+		</div>
+		<div class="col-xs-6 col-md-4">
+			<img class="img-thumbnail center-block foodimg" src="images/2482704_image_3.jpg" alt="Generic placeholder image">
+			<h3 class="text-center">Sophisticated Korean dining paired with wine</h3>
+			<p class="text-center">
+				La Yeon serves a sophisticated formal dinner of Korean cuisine prepared through modern recipes.
+			</p>
+		</div>
+	</div>
 </div>
-
-<div class="row center-block" >
-            <div class="col-md-1"></div>
-        <div class="col-xs-5 col-sm-3">
-                <img class="img-thumbnail center-block" src="images/2482704_image_1.jpg" alt="Generic placeholder image" >
-                <h3 class="text-center">Traditional Korean cuisine</h3>
-                <p class="text-center">Michelin Guide is a world-famous guide to the best restaurants across the globe. This year, there were many additions in the area of Seoul, especially focusing on restaurants serving Korean cuisine. </p>
-   
-        </div>
-        <div class="col-xs-5 col-sm-3">
-                <img class="img-thumbnail center-block"  src="images/2482704_image_2.jpg" alt="Generic placeholder image">
-                <h3 class="text-center">The essence of Korean cuisine</h3>
-                <p class="text-center">Gaon is a first-class restaurant serving Korean cuisine course meals. The restaurant specializes in presenting dishes that fully explore the natural flavors of the seasonal ingredients.  </p>
-                
-        </div>
-        <div class="col-xs-5 col-sm-3">
-                <img class="img-thumbnail center-block" src="images/2482704_image_3.jpg" alt="Generic placeholder image" >
-                <h3 class="text-center">Sophisticated Korean dining paired with wine</h3>
-                <p class="text-center">La Yeon serves a sophisticated formal dinner of Korean cuisine prepared through modern recipes. 
-                    </p>
-                
-        </div>
-
-        <div class="col-md-1"></div>
-      
- </div>
-
-
+<hr class="featurette-divider">
+<footer class="text-center">
+<div id="sns">
+	<a href="https://www.facebook.com/"><img src="images/facebook.png" alt="facebook" style="height:40px;"></a>
+	<a href="https://www.youtube.com/"><img src="images/youtube.png" alt="youtube" style="height:40px;"></a>
+	<a href="https://www.instagram.com/"><img src="images/linkedin.png" alt="linkedin" style="height:40px;"></a>
+	<a href="https://www.gmail.com/"><img src="images/gmail.png" alt="gmail" style="height:40px;"></a>
+	<a href="https://www.twitter.com/"><img src="images/twitter.jpg" alt="twitter" style="height:40px;"></a>
+	<a href="https://www.instagram.com/"><img src="images/instagram.jpg" alt="instagram" style="height:40px;"></a>
 </div>
-
-
-
-  <hr class="featurette-divider">
-  <footer class="text-center">
-      <div id="sns">
-          <a href="https://www.facebook.com/"><img src="images/facebook.png" alt="facebook" style="height:40px;"></a>
-          <a href="https://www.youtube.com/"><img src="images/youtube.png" alt="youtube" style="height:40px;"></a>
-          <a href="https://www.instagram.com/"><img src="images/linkedin.png" alt="linkedin" style="height:40px;"></a>
-          <a href="https://www.gmail.com/"><img src="images/gmail.png" alt="gmail" style="height:40px;"></a>
-          <a href="https://www.twitter.com/"><img src="images/twitter.jpg" alt="twitter" style="height:40px;"></a>
-          <a href="https://www.instagram.com/"><img src="images/instagram.jpg" alt="instagram" style="height:40px;"></a>
-  
-      </div>
-    <p>Learn all you need to know about this fascinating country here! </p>
-  
-    <p>KOREATRAVEL</p>
-  </footer>
+<p>
+	Learn all you need to know about this fascinating country here!
+</p>
+<p>
+	KOREATRAVEL
+</p>
+</footer>

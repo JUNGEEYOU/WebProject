@@ -23,3 +23,7 @@ function cancelAdd(){
 window.location.href = '/gallery';
 }
 
+function cancelAdd2(){
+    
+    window.location.href = '/culturelInfo';
+    }

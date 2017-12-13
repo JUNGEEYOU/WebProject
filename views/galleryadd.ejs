@@ -1,121 +1,82 @@
-
-
 <!DOCTYPE html>
-
-<!-- define angular app -->
-<html ng-app="scotchy">
-
+<html>
 <head>
-  <!-- SCROLLS -->
-<title></title>
-<base href="/" >
-
+<title>Gallery Write</title>
 <meta charset="utf-8">
-  <!-- SPELLS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
- 
- 
-<link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-  <!-- <script src="javascripts/spa.js"></script> -->
-  <script src="javascripts/board.js"></script>
-
-   
-  <!-- <meta name="fragment" content="#!"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/Add.css"/>
+<script src="/javascripts/board.js"></script>
 </head>
-
-<!-- define angular controller -->
-<body ng-app="scotchy">
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li  ><a href="travel">Travel</a></li>
-                <li ><a href="koreaFood">Korea food</a></li>
-                <li ><a href="culturelInfo">Korea culture</a></li>
-               
-                <li class="active"><a href="gallery">Gallery</a></li>
-                <li><a href="contact">Contact us</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                    <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <% if(user) { %>
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 
-                    <% }else {%>
-                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                       <%}%>
-            </ul>
-        </div>
-    </nav>
-
-
-    <div class="main">
-  
-
-    <div class="container">
-            <section id="content">
-               
-                    
-                
-                    <form method="post" action="/gallery/add" enctype="multipart/form-data" >
-                        <h1>Upload gallery</h1>
-
-                        <div class="form-group">
-                            <label class="pull-left">Select an image:</label>
-                        <input type="file" name="fileName">
-                        </div>
-                      
-                        <div class="form-group">
-                                <label class="pull-left">제목:</label>
-                                <input type="text" name="name" required>
-                        </div>
-                        <div class="form-group">
-                                <label class="pull-left">내용:</label>
-                                <textarea name="info" required cols="30" rows="5"></textarea>
-                        </div>
-                    
-                        <div class="center-block">
-                                <input type="submit" name="submit" value="Save" style="margin-left: 50px">
-                                <input type="submit" name="cancel" value="Cancel" class="cancel" onClick="cancelAdd()">
-                        </div>
-                
-                        <h1 id='uploadProgress'></h1>
-                    </form>
-            </section>
-    
-        </div>
-    
-    </div>
-    
-    
-
-    
-    <hr class="featurette-divider">
-    <footer class="text-center">
-        <div id="sns">
-            <a href="https://www.facebook.com/"><img src="images/facebook.png" alt="facebook" style="height:40px;"></a>
-            <a href="https://www.youtube.com/"><img src="images/youtube.png" alt="youtube" style="height:40px;"></a>
-            <a href="https://www.instagram.com/"><img src="images/linkedin.png" alt="linkedin" style="height:40px;"></a>
-            <a href="https://www.gmail.com/"><img src="images/gmail.png" alt="gmail" style="height:40px;"></a>
-            <a href="https://www.twitter.com/"><img src="images/twitter.jpg" alt="twitter" style="height:40px;"></a>
-            <a href="https://www.instagram.com/"><img src="images/instagram.jpg" alt="instagram" style="height:40px;"></a>
-    
-        </div>
-      <p>Learn all you need to know about this fascinating country here! </p>
-    
-      <p>KOREATRAVEL</p>
-    </footer>
-    
+<body>
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+	<div class="navbar-header">
+	</div>
+	<ul class="nav navbar-nav">
+		<li><a href="/">Home</a></li>
+		<li><a href="travel">Travel</a></li>
+		<li><a href="koreaFood">Korea food</a></li>
+		<li><a href="culturelInfo">Korea culture</a></li>
+		<li class="active"><a href="gallery">Gallery</a></li>
+		<li><a href="contact">Contact us</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+		<li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<% if(user) { %>
+		<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		<% }else {%>
+		<li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		<%}%>
+	</ul>
+</div>
+</nav>
+<div class="main">
+	<div class="container">
+		<section id="content">
+		<form method="post" action="/gallery/add" enctype="multipart/form-data">
+			<h1>Upload gallery</h1>
+			<div class="form-group">
+				<label class="pull-left">Select an image:</label>
+				<input type="file" name="fileName">
+			</div>
+			<div class="form-group">
+				<label class="pull-left">Title :</label>
+				<input type="text" name="name" required>
+			</div>
+			<div class="form-group">
+				<label class="pull-left">content:</label>
+				<textarea name="info" required cols="30" rows="5"></textarea>
+			</div>
+			<div class="center-block">
+				<input type="submit" name="submit" value="Save" style="margin-left: 50px">
+				<input type="submit" name="cancel" value="Cancel" class="cancel" onclick="cancelAdd()">
+			</div>
+			<h1 id='uploadProgress'></h1>
+		</form>
+		</section>
+	</div>
+</div>
+<hr class="featurette-divider">
+<footer class="text-center">
+<div id="sns">
+	<a href="https://www.facebook.com/"><img src="/images/facebook.png" alt="facebook" style="height:40px;"></a>
+	<a href="https://www.youtube.com/"><img src="/images/youtube.png" alt="youtube" style="height:40px;"></a>
+	<a href="https://www.instagram.com/"><img src="/images/linkedin.png" alt="linkedin" style="height:40px;"></a>
+	<a href="https://www.gmail.com/"><img src="/images/gmail.png" alt="gmail" style="height:40px;"></a>
+	<a href="https://www.twitter.com/"><img src="/images/twitter.jpg" alt="twitter" style="height:40px;"></a>
+	<a href="https://www.instagram.com/"><img src="/images/instagram.jpg" alt="instagram" style="height:40px;"></a>
+</div>
+<p>
+	Learn all you need to know about this fascinating country here!
+</p>
+<p>
+	KOREATRAVEL
+</p>
+</footer>

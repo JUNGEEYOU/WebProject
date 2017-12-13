@@ -1,114 +1,82 @@
- 
- <!DOCTYPE html>
- 
- <!-- define angular app -->
- <html ng-app="scotchy">
- 
- <head>
-   <!-- SCROLLS -->
- <title></title>
- <base href="/" >
- 
- <meta charset="utf-8">
-   <!-- SPELLS -->
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
- 
-   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  
-   <link rel="stylesheet" href="stylesheets/KoreanFood.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 
-   <!-- <script src="javascripts/spa.js"></script> -->
-   <script src="javascripts/board.js"></script>
- 
-    
-   <!-- <meta name="fragment" content="#!"> -->
- </head>
- 
- <!-- define angular controller -->
- <body ng-app="scotchy">
- 
-     <nav class="navbar navbar-inverse">
-         <div class="container-fluid">
-             <div class="navbar-header">
- 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Culture Edit</title>
+<meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/javascripts/board.js"></script>
+<link rel="stylesheet" href="/public/stylesheets/Add.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+	<div class="navbar-header">
+	</div>
+	<ul class="nav navbar-nav">
+		<li><a href="/">Home</a></li>
+		<li><a href="/travel">Travel</a></li>
+		<li><a href="/koreaFood">Korea food</a></li>
+		<li class="active"><a href="/culturelInfo">Korea culture</a></li>
+		<li><a href="/gallery">Gallery</a></li>
+		<li><a href="/contact">Contact us</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+		<li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<% if(user) { %>
+		<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		<% }else {%>
+		<li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		<%}%>
+	</ul>
+</div>
+</nav>
+
+
+
+<div class="main">
+
+        <section id="content" >
+		<form method="post" action="/culturelInfo/edit/<%=data[0].culture_id%>" class="center-block" > 
+            <div class="form-group">
+                    <label for="exampleInputEmail1">title: </label>
+                    <input type="text" name="name" value="<%=data[0].culture_name%>" lass="form-control">
              </div>
-             <ul class="nav navbar-nav">
-                 <li><a href="/">Home</a></li>
-                 <li  ><a href="travel">Travel</a></li>
-                 <li ><a href="koreaFood">Korea food</a></li>
-                 <li class="active"><a href="culturelInfo">Korea culture</a></li>
-                
-                 <li ><a href="gallery">Gallery</a></li>
-                 <li><a href="contact">Contact us</a></li>
-             </ul>
-             <ul class="nav navbar-nav navbar-right">
-                     <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                 <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                 <% if(user) { %>
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 
-                    <% }else {%>
-                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                       <%}%>
-             </ul>
-         </div>
-     </nav>
- 
- 
-     <div class="main">
- 
- <div class="page-data">
-            
-            <form method="post" action="/culturelInfo/edit/<%=data[0].culture_id%>">
-                <table cellpadding="11">
-                <tr>
-                    <td class="label">Name</td><td>: <input type="text" name="name" value="<%=data[0].culture_name%>" required></td>
-                 </tr>
-                 <tr>
-                    <td class="label" valign="top">food info</td>
-                    <td valign="top">: 
-                        <textarea name="info" required cols="30" rows="5"><%=data[0].culture_info%></textarea>
-                    </td>
-                </tr>
-                 <tr>
-                    <td class="label"></td>
-                    <td>
-                        &nbsp; <input type="submit" name="submit" value="search">
-                       <input type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAdd()">
-                    </td>
-                 </tr>
-                </table>
-            </form>
-            
-        </div>
-
-
+             <label for="exampleInputEmail1"> Content </label>
+             <div class="form-group">
+                     <textarea lass="form-control" name="info" required cols="30" rows="5"><%=data[0].culture_info%></textarea> 
+            </div>
+            <div class="center-block">
+				    <input type="submit" name="submit" value="search" style="margin-left: 50px">
+					<input  type="submit" name="cancel" value="Cancel" class="cancel" onclick="cancelAdd()">
+			</div>
+		</form>
+        </section>
     </div>
     
-    
-    
-    
-    
-    
-        <hr class="featurette-divider">
-        <footer class="text-center">
-            <div id="sns">
-                <a href="https://www.facebook.com/"><img src="images/facebook.png" alt="facebook" style="height:40px;"></a>
-                <a href="https://www.youtube.com/"><img src="images/youtube.png" alt="youtube" style="height:40px;"></a>
-                <a href="https://www.instagram.com/"><img src="images/linkedin.png" alt="linkedin" style="height:40px;"></a>
-                <a href="https://www.gmail.com/"><img src="images/gmail.png" alt="gmail" style="height:40px;"></a>
-                <a href="https://www.twitter.com/"><img src="images/twitter.jpg" alt="twitter" style="height:40px;"></a>
-                <a href="https://www.instagram.com/"><img src="images/instagram.jpg" alt="instagram" style="height:40px;"></a>
-        
-            </div>
-          <p>Learn all you need to know about this fascinating country here! </p>
-        
-          <p>KOREATRAVEL</p>
-        </footer>
-      
-        
+
+
+
+<hr class="featurette-divider">
+<footer class="text-center">
+<div id="sns">
+	<a href="https://www.facebook.com/"><img src="/images/facebook.png" alt="facebook" style="height:40px;"></a>
+	<a href="https://www.youtube.com/"><img src="/images/youtube.png" alt="youtube" style="height:40px;"></a>
+	<a href="https://www.instagram.com/"><img src="/images/linkedin.png" alt="linkedin" style="height:40px;"></a>
+	<a href="https://www.gmail.com/"><img src="/images/gmail.png" alt="gmail" style="height:40px;"></a>
+	<a href="https://www.twitter.com/"><img src="/images/twitter.jpg" alt="twitter" style="height:40px;"></a>
+	<a href="https://www.instagram.com/"><img src="/images/instagram.jpg" alt="instagram" style="height:40px;"></a>
+</div>
+<p>
+	Learn all you need to know about this fascinating country here!
+</p>
+<p>
+	KOREATRAVEL
+</p>
+</footer>
