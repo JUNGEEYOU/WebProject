@@ -1,29 +1,28 @@
-
-function addUser(){
+function addUser() {
     
-window.location.href = '/gallery/add';
-}
-
-
-function addCulture(){
+        window.location.href = '/gallery/add';
+    }
     
-window.location.href = '/culturelInfo/add';
-}
-
-
-
-function comment(){
     
-window.location.href = '/galleryComment';
-}
-
-
-function cancelAdd(){
-
-window.location.href = '/gallery';
-}
-
-function cancelAdd2(){
+    function addCulture() {
     
-    window.location.href = '/culturelInfo';
+        window.location.href = '/culturelInfo/add';
+    }
+    
+    
+    
+    function comment() {
+    
+        window.location.href = '/galleryComment';
+    }
+    
+    
+    function cancelAdd() {
+    
+        window.location.href = '/gallery';
+    }
+    
+    function cancelAdd2() {
+    
+        window.location.href = '/culturelInfo';
     }

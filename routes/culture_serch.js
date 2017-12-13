@@ -2,7 +2,6 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('culture_serch',{user:req.user});
 });
@@ -10,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   req.session.destroy(function(err){
     if(err){console.log(err)}
-    res.send("<script>alert('로그아웃됨'); location.href='/';</script>");
+    res.send("<script>alert('Logout!'); location.href='/';</script>");
   }
   
   );

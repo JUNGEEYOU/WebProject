@@ -7,9 +7,9 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var flash    = require('connect-flash');
+var flash = require('connect-flash');
 var mysql = require('mysql');
-var connection  = require('express-myconnection'); 
+var connection = require('express-myconnection');
 
 
 var index = require('./routes/index');
@@ -24,57 +24,55 @@ var signup = require('./routes/signup');
 var login = require('./routes/login');
 var serch = require('./routes/serch');
 var profile = require('./routes/profile');
-var culture_serch =require('./routes/culture_serch');
-
-//var galleryComment = require('./routes/galleryComment');
-
+var culture_serch = require('./routes/culture_serch');
 
 var app = express();
 
-require('./public/javascripts/passport')(passport); 
+require('./public/javascripts/passport')(passport);
 
-
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// 이거 설절이 필요함!!
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'foodimg')));
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.locals.fucking = 1;
 
 app.use(
-  
-  connection(mysql,{
-      
-      host: 'localhost', //'localhost',
-      user: 'root',
-      password : 'jungee135',
-      port : 3306, //port mysql
-      database:'my_schema',
-      multipleStatements: true
 
-  },'pool') //or single
+    connection(mysql, {
+
+        host: 'localhost', 
+        user: 'root',
+        password: 'jungee135',
+        port: 3306, 
+        database: 'my_schema',
+        multipleStatements: true
+
+    }, 'pool')
 
 );
 
-app.use(express.static('./')); 
+app.use(express.static('./'));
 
-/* set middlewares */
+
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 app.use(session({
-	secret: 'vidyapathaisalwaysrunning',
-	resave: true,
-	saveUninitialized: true
- } )); // session secret
+    secret: 'vidyapathaisalwaysrunning',
+    resave: true,
+    saveUninitialized: true
+})); 
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(passport.session()); 
+app.use(flash()); 
 
 
 
@@ -90,31 +88,23 @@ app.use('/contact', contact);
 app.use('/signup', signup);
 app.use('/login', login);
 app.use('/serch', serch);
-app.use('/profile',profile);
+app.use('/profile', profile);
 app.use('/culture_serch', culture_serch);
-//app.use('/galleryComment', galleryComment);
-
-
-  
 
 
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
