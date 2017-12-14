@@ -43,7 +43,6 @@ app.use(bodyParser.urlencoded({
 app.locals.fucking = 1;
 
 app.use(
-
     connection(mysql, {
 
         host: 'localhost', 
@@ -54,7 +53,6 @@ app.use(
         multipleStatements: true
 
     }, 'pool')
-
 );
 
 app.use(express.static('./'));
